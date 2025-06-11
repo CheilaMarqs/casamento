@@ -381,6 +381,24 @@ const imagensPresentesFixos = {
   "Vale brigadeiro para crises conjugais": "teste.jpg"
 };
 
+function uploadImgur(base64) {
+  const clientId = "e97188fb3420e97"; // Seu Client-ID do Imgur
+  return fetch("https://api.imgur.com/3/image", {
+    method: "POST",
+    headers: {
+      Authorization: "Client-ID " + clientId,
+      Accept: "application/json"
+    },
+    body: new URLSearchParams({
+      image: base64.split(',')[1],
+      type: "base64"
+    })
+  })
+    .then(response => response.json())
+    .then(data => data.data.link)
+    .catch(() => "teste.jpg"); // fallback se der erro
+}
+
 // function confirmarPresente() {
 //   const nomePresente = document.getElementById("presente-titulo").innerText;
 //   const comentario = document.getElementById("comentario-pix").value;
@@ -472,37 +490,20 @@ function confirmarPresente() {
   const nomePresente = document.getElementById("presente-titulo").innerText;
   const comentario = document.getElementById("comentario-pix").value;
   const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
-
-  // Pega imagem do card-pix se existir (para presentes personalizados)
   let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
   if (!srcImagem) {
     srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
   }
 
-  // Envia para Google Sheets
-  fetch('https://script.google.com/macros/s/AKfycbwPXg-orGDyQ94_rsPxt7TzmEIQA2kZ10jB4umcUHwKepbyK9qG9mud7gimVU8mitaN/exec', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      nome: nomeDoador,
-      presente: nomePresente,
-      mensagem: comentario,
-      imagem: srcImagem
-    })
-  })
-  .then(response => response.text())
-  .then(text => {
-    alert("Presente confirmado e salvo!");
-  })
-  .catch(err => alert("Erro ao salvar: " + err));
+  // Envia para o Google Forms
+  salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, srcImagem);
 
+  // Adiciona na lista visual
   const lista = document.getElementById("lista-confirmados");
   const div = document.createElement("div");
   div.className = "presente";
   div.innerHTML = `
-    <img src="${srcImagem}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;">
+    <img src="${srcImagem}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;" onerror="this.src='teste.jpg'">
     <p><strong>${nomePresente}</strong></p>
     <p>De: <em>${nomeDoador}</em></p>
     <p>${comentario || "Sem comentário 😅"}</p>
@@ -516,99 +517,124 @@ function confirmarPresente() {
   if (imgTemp) imgTemp.remove();
   delete document.getElementById("card-pix").dataset.imagemConfirmacao;
   currentIndex = document.querySelectorAll('#lista-confirmados .presente').length - 1;
-  updateSlider();const listaConfirmados = document.getElementById("lista-confirmados");
-}
-
-
-const prevBtn = document.getElementById("prev-btn");
-const nextBtn = document.getElementById("next-btn");
-
-function updateSlider() {
-  const track = document.querySelector('.slider-track');
-  const cardWidth = document.querySelector('.slider-track .presente')?.offsetWidth || 250;
-  track.style.transform = `translateX(-${currentIndex * (cardWidth + 20)}px)`;
-}
-
-prevBtn.addEventListener('click', () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
-  }
-});
-
-nextBtn.addEventListener('click', () => {
-  const totalSlides = listaConfirmados.children.length;
-  if (currentIndex < totalSlides - 1) {
-    currentIndex++;
-    updateSlider();
-  }
-
-
-});
-
-// Atualizar slider ao adicionar presente confirmado
-function adicionarPresenteConfirmado(presenteHTML) {
-  listaConfirmados.insertAdjacentHTML('beforeend', presenteHTML);
   updateSlider();
 }
 
-</script>
+// Substitua a função confirmarPresente por esta versão:
 
-<script>
-let currentIndex = 0;
-
-document.getElementById("next-btn").addEventListener("click", () => {
-  if (currentIndex < listaConfirmados.children.length - 1) {
-    currentIndex++;
-    updateSlider();
+function confirmarPresente() {
+  const nomePresente = document.getElementById("presente-titulo").innerText;
+  const comentario = document.getElementById("comentario-pix").value;
+  const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
+  let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
+  if (!srcImagem) {
+    srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
   }
-});
 
-document.getElementById("prev-btn").addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
+  // Se for imagem base64, faz upload para o Imgur
+  if (srcImagem.startsWith("data:image")) {
+    uploadImgur(srcImagem).then(urlImgur => {
+      salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, urlImgur);
+      adicionarPresenteVisual(nomePresente, nomeDoador, comentario, urlImgur);
+    });
+  } else {
+    salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, srcImagem);
+    adicionarPresenteVisual(nomePresente, nomeDoador, comentario, srcImagem);
   }
-});
 
-function salvarPresente(nome, presente, mensagem, imagemUrl = "") {
-  const url = "https://script.google.com/macros/s/AKfycbwPXg-orGDyQ94_rsPxt7TzmEIQA2kZ10jB4umcUHwKepbyK9qG9mud7gimVU8mitaN/exec";
-
-  fetch(url, {
-    method: "POST",
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({
-      nome: nome,
-      presente: presente,
-      mensagem: mensagem,
-      imagem: imagemUrl
-    })
-  })
-  .then(response => response.text())
-  .then(result => console.log("Enviado:", result))
-  .catch(error => console.error("Erro:", error));
+  fecharPix();
+  const imgTemp = document.getElementById("img-temp");
+  if (imgTemp) imgTemp.remove();
+  delete document.getElementById("card-pix").dataset.imagemConfirmacao;
+  currentIndex = document.querySelectorAll('#lista-confirmados .presente').length - 1;
+  updateSlider();
 }
 
-document.getElementById("prev-btn").addEventListener("click", () => {
-  if (currentIndex > 0) {
-    currentIndex--;
-    updateSlider();
+// Adicione também esta função para exibir o presente na lista
+function adicionarPresenteVisual(nomePresente, nomeDoador, comentario, imagemUrl) {
+  const lista = document.getElementById("lista-confirmados");
+  const div = document.createElement("div");
+  div.className = "presente";
+  let html = "";
+  if (imagemUrl) {
+   html += `<img src="${imagemUrl}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;">`;
   }
-});
-
-document.getElementById("next-btn").addEventListener("click", () => {
-  const total = document.querySelectorAll('#lista-confirmados .presente').length;
-  if (currentIndex < total - 1) {
-    currentIndex++;
-    updateSlider();
-  }
-});
-
-
+  html += `
+    <p><strong>${nomePresente}</strong></p>
+    <p>De: <em>${nomeDoador}</em></p>
+    <p>${comentario || "Sem comentário 😅"}</p>
+  `;
+  div.innerHTML = html;
+  lista.appendChild(div);
+  div.classList.add('adicionado');
+  setTimeout(() => div.classList.remove('adicionado'), 300);
+}
 </script>
+// Ajustes nos scripts para o Google Forms
+<script>
+  // Substitua pelos nomes corretos dos campos conforme seu formulário
+function salvarPresenteGoogleForms(nome, presente, mensagem, imagemUrl = "") {
+  const url = "https://docs.google.com/forms/d/e/1FAIpQLSfCJIMQ1ThR8norkqsdJ-NcKfy_6n3sHn0RSPs03AouadBONA/formResponse";
+  const formData = new FormData();
+  formData.append("entry.899788188", nome);      // Nome
+  formData.append("entry.1283992162", presente); // Presente
+  formData.append("entry.707539019", mensagem);  // Mensagem
+  formData.append("entry.2112860432", imagemUrl); // Imagem (se houver)
 
+  alert("Presente confirmado! (O Google Forms não retorna resposta, mas tentamos enviar)");
+  fetch(url, {
+    method: "POST",
+    mode: "no-cors",
+    body: formData
+  });
+}
+</script>
+<script>
+function carregarPresentesConfirmados() {
+  const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSj-N-lKq4ga601XJjxpwjGKxJEHcOOJI0nMLZi1A_0_bX6-pGNpsn3T6iPGhRBoZCxC_1raQbyCZRq/pub?gid=1229724433&single=true&output=csv";
+  fetch(urlCSV)
+    .then(response => response.text())
+    .then(csv => {
+      // Divide o CSV em linhas, mas ignora linhas vazias
+      const linhas = csv.split('\n').filter(l => l.trim()).slice(1); // pula o cabeçalho
+      linhas.forEach(linha => {
+        // Divide corretamente, mesmo se houver vírgulas dentro de aspas
+        const colunas = [];
+        let atual = '';
+        let dentroAspas = false;
+        for (let i = 0; i < linha.length; i++) {
+          const char = linha[i];
+          if (char === '"' && linha[i + 1] !== '"') {
+            dentroAspas = !dentroAspas;
+          } else if (char === ',' && !dentroAspas) {
+            colunas.push(atual.replace(/(^"|"$)/g, ""));
+            atual = '';
+          } else {
+            atual += char;
+          }
+        }
+        colunas.push(atual.replace(/(^"|"$)/g, "")); // último campo
+
+        if (colunas.length < 5) return;
+        const nome = colunas[1];
+        const presente = colunas[2];
+        const mensagem = colunas[3];
+        let imagemUrl = colunas[4].replace(/[\r\n]/g, "").trim().replace(/^"+|"+$/g, "");
+        if (!imagemUrl) {
+          imagemUrl = "teste.jpg"; // fallback padrão se estiver vazio
+        }
+        console.log('Imagem lida do CSV:', imagemUrl);
+
+        if (nome && presente) {
+          adicionarPresenteVisual(presente, nome, mensagem, imagemUrl);
+        }
+      });
+    });
+}
+
+// Chame ao carregar a página
+window.addEventListener('DOMContentLoaded', carregarPresentesConfirmados);
+</script>
 
 </body>
 </html>
