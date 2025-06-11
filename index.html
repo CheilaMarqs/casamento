@@ -319,10 +319,10 @@
 
   <section>
     <h2>Confirmação de Presença</h2>
-    <form class="form-confirmacao" onsubmit="event.preventDefault(); alert('Presença confirmada com sucesso!')">
-      <input type="text" name="nome" placeholder="Seu nome" required>
+    <form class="form-confirmacao" onsubmit="enviarConfirmacaoPresenca(event)">
+      <input type="text" name="nomePessoa" placeholder="Seu nome" required>
       <input type="number" name="quantidade" placeholder="Quantas pessoas?" min="1" required>
-      <textarea name="nomes" placeholder="Nomes dos acompanhantes" required></textarea>
+      <textarea name="acompanhantes" placeholder="Nomes dos acompanhantes" required></textarea>
       <button type="submit">Confirmar Presença</button>
     </form>
   </section>
@@ -623,6 +623,16 @@ function carregarPresentesConfirmados() {
         if (!imagemUrl) {
           imagemUrl = "teste.jpg"; // fallback padrão se estiver vazio
         }
+        // Aceita qualquer link externo (http/https), mesmo sem extensão
+        // Se não for link externo e não for arquivo local de imagem, usa fallback
+        if (
+          imagemUrl &&
+          !/^https?:\/\//.test(imagemUrl) && // não é link externo
+          !/\.(jpg|jpeg|png|gif)$/i.test(imagemUrl) // e não é arquivo local de imagem
+        ) {
+          imagemUrl = "teste.jpg";
+        }
+
         console.log('Imagem lida do CSV:', imagemUrl);
 
         if (nome && presente) {
