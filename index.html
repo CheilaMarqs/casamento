@@ -572,17 +572,19 @@ document.getElementById("prev-btn").addEventListener("click", () => {
 });
 
 function salvarPresente(nome, presente, mensagem, imagemUrl = "") {
-  const url = "https://script.google.com/macros/s/AKfycbzpP_FEcVh2x-h6xvvfFdx3fglmtnvi7wDCIwrefX-HNJecbamIHFfv4VRGImm7Fz86pw/exec";
-
-  const data = new URLSearchParams();
-  data.append("nome", nome);
-  data.append("presente", presente);
-  data.append("mensagem", mensagem);
-  data.append("imagem", imagemUrl);
+  const url = "https://script.google.com/macros/s/AKfycbwPXg-orGDyQ94_rsPxt7TzmEIQA2kZ10jB4umcUHwKepbyK9qG9mud7gimVU8mitaN/exec";
 
   fetch(url, {
     method: "POST",
-    body: data
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      nome: nome,
+      presente: presente,
+      mensagem: mensagem,
+      imagem: imagemUrl
+    })
   })
   .then(response => response.text())
   .then(result => console.log("Enviado:", result))
