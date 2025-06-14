@@ -456,10 +456,9 @@ function confirmarPresenteAmazon() {
   document.getElementById("comentario-amazon").value = "";
 }
 
-window.addEventListener('touchstart', liberarAudio, { once: true });
-window.addEventListener('click', liberarAudio, { once: true });
+window.addEventListener('scroll', liberarAudioMusica, { once: true });
 
-function liberarAudio() {
+function liberarAudioMusica() {
   const video = document.getElementById('slide-video');
   if (video) {
     video.muted = false;
