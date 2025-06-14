@@ -410,26 +410,27 @@ window.addEventListener('DOMContentLoaded', function() {
 });
 
 let headerMinimalAtivo = false;
-let scrollTimeout = null;
 
 window.addEventListener('scroll', function() {
-  if (scrollTimeout) clearTimeout(scrollTimeout);
-  scrollTimeout = setTimeout(() => {
-    const header = document.getElementById('main-header');
-    const frase = document.getElementById('frase-final');
-    if (!header) return;
+  const header = document.getElementById('main-header');
+  const frase = document.getElementById('frase-final');
+  if (!header) return;
 
-    // Dois limites: ativa minimal só acima de 140, desativa só abaixo de 60
-    if (!headerMinimalAtivo && window.scrollY > 140) {
-      header.classList.add('minimal');
-      if (frase) frase.style.opacity = '0';
-      headerMinimalAtivo = true;
-    } else if (headerMinimalAtivo && window.scrollY < 60) {
-      header.classList.remove('minimal');
-      if (frase) frase.style.opacity = '1';
-      headerMinimalAtivo = false;
-    }
-  }, 100); // só executa 100ms após parar de rolar
+  const scrollY = window.scrollY;
+
+  // Só ativa minimal se NÃO está ativo e passou do limite superior
+  if (!headerMinimalAtivo && scrollY > 140) {
+    header.classList.add('minimal');
+    if (frase) frase.style.opacity = '0';
+    headerMinimalAtivo = true;
+  }
+  // Só desativa minimal se ESTÁ ativo e voltou abaixo do limite inferior
+  else if (headerMinimalAtivo && scrollY < 60) {
+    header.classList.remove('minimal');
+    if (frase) frase.style.opacity = '1';
+    headerMinimalAtivo = false;
+  }
+  // Se scrollY está entre 60 e 140, NÃO faz nada!
 });
 
 function abrirCardAmazon() {
