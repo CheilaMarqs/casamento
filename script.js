@@ -466,3 +466,8 @@ function liberarAudioMusica() {
   }
 }
 
+// Garante que só executa uma vez
+['touchstart', 'click', 'scroll'].forEach(evt => {
+  window.addEventListener(evt, liberarAudioMusica, { once: true });
+});
+
