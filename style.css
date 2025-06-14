@@ -1,0 +1,302 @@
+body {
+      font-family: 'Pinion Script', cursive;
+      background-color: #f8f9fa;
+      color: #003366;
+      margin: 0;
+      padding: 0;
+    }
+
+    header {
+    font-family: 'Dancing Script', cursive;
+      background-image: url('fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 10px 10px;
+    }
+
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 70px;
+      margin: 0;
+      color: #fff8dc;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    header p {
+      font-family: 'handlee', cursive;
+      font-size: 20px;
+    }
+
+    h1, h2 {
+      margin: 10px 0;
+      text-align: center;
+    }
+
+    section {
+      padding: 20px;
+      text-align: center;
+    }
+
+    .galeria-decorada {
+      display: flex;
+      justify-content: center;
+      padding: 40px 20px;
+      background-color: #eef4ff;
+    }
+
+    .carrossel-com-flores {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .carrossel {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .carrossel .slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      border-radius: 20px;
+      border: 3px solid #d4af37;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+    }
+
+    .carrossel .ativo {
+      opacity: 1;
+      z-index: 1;
+    }
+
+    .presente {
+      background: #e0ecff;
+      padding: 15px;
+      margin: 10px auto;
+      max-width: 100%;
+      border-radius: 10px;
+    }
+
+    .form-confirmacao, .form-presente {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+      font-family: Arial, sans-serif;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003366;
+    }
+
+    #presentes-confirmados {
+      padding: 20px;
+/*      background-color: #fffef8;*/
+      text-align: center;
+    }
+
+    #presentes-confirmados .presente {
+      background: #f1f8ff;
+      max-width: 100%;
+/*      border: 2px dashed #d4af37;*/
+
+    }
+
+    .slider-container {
+      overflow: hidden;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 10px;
+      border: 2px dashed #d4af37;
+      background: #f1f8ff;
+      padding: 10px;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 15px;
+      max-width: 100%;
+    }
+
+    #lista-confirmados {
+      display: flex;
+      overflow-x: auto;
+      gap: 20px;
+      height: 300px;
+      align-items: center;
+      padding: 10px;
+      max-width: 100%;
+    }
+
+    #prev-btn, #next-btn {
+      background-color: #d4af37;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 5px 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 10px 5px;
+    }
+
+    #prev-btn:hover, #next-btn:hover {
+      background-color: #b9922f;
+    }
+
+    .card-pix {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .conteudo-card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      max-width: 300px;
+      border: 4px solid #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+      position: relative;
+    }
+
+    .fechar {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .conteudo-card button {
+      margin-top: 10px;
+      background-color: #d4af37;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .conteudo-card button:hover {
+      background-color: #b9922f;
+    }
+
+    .presente {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.presente.adicionado {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+#contador-casamento {
+  margin: 0px auto 1px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.15);
+  /* border: 2px solid #d4af37; */
+  border-radius: 18px;
+  /* padding: 20px 32px; */
+  font-family: 'Dancing Script', cursive;
+  color: #fff8dc;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  gap: 9px;
+  padding: 10px 12px;
+  width: 50%;
+  /* height: 105px; */
+  max-height: 150px;
+  max-width: 190px;
+}
+
+#contador-casamento .tempo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.1rem); /* fonte menor e responsiva */
+  min-width: 25px;
+  margin: 0 2px; /* diminui o espaço lateral entre cada tempo */
+  /* max-width: 13px; */
+  justify-content: flex-end;
+}
+
+#contador-casamento .tempo .unidade {
+  font-size: clamp(rem, 1.5vw, 1.1rem); /* fonte menor e responsiva */
+  font-weight: 600;
+  margin-left: 2px;
+  font-family: 'Dancing Script', cursive;
+}
+
+.mensagem-final {
+  background: rgba(2, 12, 61, 0.8);
+  width: 90%;
+  text-align: center;
+  margin: 12px auto;
+  font-size: clamp(1.5rem, 2vw, 3rem); /* fonte bem maior e responsiva */
+  font-family: 'Dancing Script', cursive;
+  color: hsl(0, 0%, 99%);
+  /* text-shadow: 2px 2px 8px #fff, 0 2px 4px #00336655; */
+  animation: fadeIn 2s ease-in-out;
+  border-radius: 18px;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 600px) {
+  #contador-casamento {
+    padding: 16px 16px;
+    gap: 12px;
+  }
+
+  #contador-casamento .tempo {
+    font-size: 1rem; /* agora menor no mobile */
+  }
+
+  #contador-casamento .tempo .unidade {
+    font-size: 0.8rem;
+  }
+}
+
+
