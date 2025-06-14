@@ -544,22 +544,19 @@ window.addEventListener('DOMContentLoaded', atualizarContadorCasamento);
 window.addEventListener('DOMContentLoaded', function() {
   const video = document.getElementById('slide-video');
   if (video) {
-    video.volume = 0.3; // volume inicial
-    // Função para diminuir gradativamente
+    video.volume = 1; // volume inicial (máximo)
     function fadeOutVolume() {
       let fade = setInterval(function() {
-        if (video.volume > 0.01) {
+        if (video.volume > 0.31) { // para em 0.3
           video.volume -= 0.01;
         } else {
-          video.volume = 0;
+          video.volume = 0.3;
           clearInterval(fade);
         }
       }, 100); // diminui a cada 100ms
     }
-    // Chame a função quando quiser iniciar o fade
-    // Exemplo: iniciar após 2 segundos de vídeo
     video.addEventListener('play', function() {
-      setTimeout(fadeOutVolume, 2000);
+      setTimeout(fadeOutVolume, 2000); // inicia o fade após 2 segundos
     });
   }
 });
