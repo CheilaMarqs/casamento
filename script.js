@@ -418,19 +418,18 @@ window.addEventListener('scroll', function() {
 
   const scrollY = window.scrollY;
 
-  // Só ativa minimal se NÃO está ativo e passou do limite superior
-  if (!headerMinimalAtivo && scrollY > 140) {
+  // Diminui o header assim que rolar para baixo (scrollY > 0)
+  if (!headerMinimalAtivo && scrollY > 0) {
     header.classList.add('minimal');
     if (frase) frase.style.opacity = '0';
     headerMinimalAtivo = true;
   }
-  // Só desativa minimal se ESTÁ ativo e voltou abaixo do limite inferior
-  else if (headerMinimalAtivo && scrollY < 60) {
+  // Só volta ao normal se rolar tudo para o topo (scrollY == 0)
+  else if (headerMinimalAtivo && scrollY === 0) {
     header.classList.remove('minimal');
     if (frase) frase.style.opacity = '1';
     headerMinimalAtivo = false;
   }
-  // Se scrollY está entre 60 e 140, NÃO faz nada!
 });
 
 function abrirCardAmazon() {
