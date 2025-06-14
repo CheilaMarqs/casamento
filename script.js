@@ -459,15 +459,14 @@ function confirmarPresenteAmazon() {
 // window.addEventListener('scroll', liberarAudioMusica, { once: true });
 
 function liberarAudioMusica() {
-  const video = document.getElementById('slide-video');
+  const video = document.getElementById('video-musica');
   if (video) {
     video.muted = false;
     video.play();
   }
 }
 
-// Garante que só executa uma vez
-['touchstart', 'click', 'scroll', 'tounched'].forEach(evt => {
+['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
   window.addEventListener(evt, liberarAudioMusica, { once: true });
 });
 
