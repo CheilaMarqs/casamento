@@ -54,10 +54,9 @@ header #contador-casamento {
 }
 
 header.minimal p,
-header.minimal #contador-casamento {
-  opacity: 0;
-  pointer-events: none;
-  overflow: hidden;
+header.minimal #contador-casamento,
+header.minimal + .mensagem-final {
+  display: none !important;
 }
 
     header {
