@@ -418,14 +418,17 @@ window.addEventListener('scroll', function() {
 
   const scrollY = window.scrollY;
 
-  // Diminui o header assim que rolar para baixo (scrollY > 0)
-  if (!headerMinimalAtivo && scrollY > 0) {
+  // Use um threshold para evitar tremeluzir no mobile
+  const THRESHOLD = 30;
+
+  // Diminui o header se rolar mais que o threshold
+  if (!headerMinimalAtivo && scrollY > THRESHOLD) {
     header.classList.add('minimal');
     if (frase) frase.style.opacity = '0';
     headerMinimalAtivo = true;
   }
-  // Só volta ao normal se rolar tudo para o topo (scrollY == 0)
-  else if (headerMinimalAtivo && scrollY === 0) {
+  // Só volta ao normal se rolar quase até o topo
+  else if (headerMinimalAtivo && scrollY < 5) {
     header.classList.remove('minimal');
     if (frase) frase.style.opacity = '1';
     headerMinimalAtivo = false;
