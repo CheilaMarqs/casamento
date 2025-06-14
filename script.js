@@ -412,12 +412,17 @@ window.addEventListener('DOMContentLoaded', function() {
 window.addEventListener('scroll', function() {
   const header = document.getElementById('main-header');
   const frase = document.getElementById('frase-final');
+  if (!header) return;
   if (window.scrollY > 120) {
-    header.classList.add('minimal');
-    if (frase) frase.style.opacity = '0';
+    if (!header.classList.contains('minimal')) {
+      header.classList.add('minimal');
+      if (frase) frase.style.opacity = '0';
+    }
   } else {
-    header.classList.remove('minimal');
-    if (frase) frase.style.opacity = '1';
+    if (header.classList.contains('minimal')) {
+      header.classList.remove('minimal');
+      if (frase) frase.style.opacity = '1';
+    }
   }
 });
 
