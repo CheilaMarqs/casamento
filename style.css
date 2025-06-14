@@ -24,12 +24,9 @@ body {
 }
 
 header.minimal {
-  background: rgba(2,12,61,0.95);
-  padding: 0 10px;
   height: 50px !important;
-  min-height: 0 !important;
+  padding: 0 10px;
   overflow: hidden;
-  transition: background 0.3s, padding 0.3s, height 0.3s;
 }
 
 header h1 {
