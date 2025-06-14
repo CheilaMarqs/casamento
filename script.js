@@ -456,3 +456,14 @@ function confirmarPresenteAmazon() {
   document.getElementById("comentario-amazon").value = "";
 }
 
+window.addEventListener('touchstart', liberarAudio, { once: true });
+window.addEventListener('click', liberarAudio, { once: true });
+
+function liberarAudio() {
+  const video = document.getElementById('slide-video');
+  if (video) {
+    video.muted = false;
+    video.play();
+  }
+}
+
