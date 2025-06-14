@@ -14,6 +14,7 @@
 </head>
 
 <body>
+<!-- <button onclick="document.getElementById('audio-perfeito').play()">Clique para ouvir a música do casal 💙</button> -->
 
   <header>
     <h1> Luiz e Cheila</h1></br>
@@ -39,11 +40,17 @@
 </div>
 <!-- <div class="mensagem-final">para o nosso SIM!</div> -->
 <div class="mensagem-final">Cada segundo que passa é um passo mais perto do nosso felizes para sempre.</div>
-  </header>
+  
+</header>
 
 <section class="galeria-decorada">
   <div class="carrossel-com-flores">
     <div class="carrossel">
+      <!-- ...código anterior... -->
+<video class="slide ativo" id="slide-video" width="100%" height="400" autoplay controls loop poster="casal01.jpg">
+  <source src="Video.mp4" type="video/mp4">
+</video>
+<!-- ...código posterior... -->
       <img src="casal01.jpg" class="slide ativo" alt="Foto do casal 1">
       <img src="casal02.jpg" class="slide" alt="Foto do casal 2">
       <!-- Adicione mais fotos aqui -->
@@ -130,22 +137,67 @@
   <button id="next-btn">›</button>
 </section>
 
+<video class="slide ativo" id="slide-video" width="0%" height="0" autoplay controls poster="casal01.jpg">
+  <source src="Video.mp4" type="video/mp4">
+  Seu navegador não suporta vídeo.
+</video>
 
 <script>
   let index = 0;
   const slides = document.querySelectorAll('.carrossel .slide');
+  const videoSlide = document.getElementById('slide-video');
 
-  function mostrarSlide() {
-    slides.forEach((slide, i) => {
+  function mostrarSlideManual(i) {
+    slides.forEach((slide, idx) => {
       slide.classList.remove('ativo');
-      if (i === index) {
+      if (idx === i) {
         slide.classList.add('ativo');
+        // Se for vídeo, reinicia e toca
+        if (slide.tagName === "VIDEO") {
+          slide.currentTime = 0;
+          slide.play();
+        } else if (videoSlide) {
+          videoSlide.pause();
+          videoSlide.currentTime = 0;
+        }
       }
     });
-    index = (index + 1) % slides.length;
+    index = i;
   }
 
-  setInterval(mostrarSlide, 3000); // muda a cada 3 segundos
+  function mostrarSlide() {
+    // Se o slide atual for vídeo e não terminou, não avança
+    if (slides[index].tagName === "VIDEO") {
+      if (!slides[index].ended && !slides[index].paused) {
+        return;
+      }
+    }
+    slides.forEach((slide, i) => slide.classList.remove('ativo'));
+    index = (index + 1) % slides.length;
+    slides[index].classList.add('ativo');
+    // Se for vídeo, toca
+    if (slides[index].tagName === "VIDEO") {
+      slides[index].currentTime = 0;
+      slides[index].play();
+    } else if (videoSlide) {
+      videoSlide.pause();
+      videoSlide.currentTime = 0;
+    }
+  }
+
+  // Quando o vídeo terminar, avança para o próximo slide
+  if (videoSlide) {
+    videoSlide.addEventListener('ended', () => {
+      slides[index].classList.remove('ativo');
+      index = (index + 1) % slides.length;
+      slides[index].classList.add('ativo');
+    });
+  }
+
+  setInterval(mostrarSlide, 3000); // muda a cada 3 segundos (exceto vídeo)
+  window.addEventListener('DOMContentLoaded', () => {
+    mostrarSlideManual(0);
+  });
 </script>
 
 <script>
@@ -487,6 +539,30 @@ function atualizarContadorCasamento() {
 
 setInterval(atualizarContadorCasamento, 1000);
 window.addEventListener('DOMContentLoaded', atualizarContadorCasamento);
+</script>
+<script>
+window.addEventListener('DOMContentLoaded', function() {
+  const video = document.getElementById('slide-video');
+  if (video) {
+    video.volume = 0.3; // volume inicial
+    // Função para diminuir gradativamente
+    function fadeOutVolume() {
+      let fade = setInterval(function() {
+        if (video.volume > 0.01) {
+          video.volume -= 0.01;
+        } else {
+          video.volume = 0;
+          clearInterval(fade);
+        }
+      }, 100); // diminui a cada 100ms
+    }
+    // Chame a função quando quiser iniciar o fade
+    // Exemplo: iniciar após 2 segundos de vídeo
+    video.addEventListener('play', function() {
+      setTimeout(fadeOutVolume, 2000);
+    });
+  }
+});
 </script>
 
 </body>
