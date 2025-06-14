@@ -16,40 +16,47 @@ body {
   background-position: center;
   color: white;
   text-align: center;
-  padding: 10px 10px;
+  padding: 24px 10px 18px 10px;
   font-family: 'Dancing Script', cursive;
-  transition: all 0.3s;
+  min-height: 50px;
+  transition: background 0.3s, padding 0.3s, height 0.3s;
+  height: auto;
 }
 
 header.minimal {
   background: rgba(2,12,61,0.95);
-  padding: 8px 10px;
+  padding: 0 10px;
+  height: 50px !important;
   min-height: 0 !important;
-  height: 50px;
-  transition: all 0.3s;
+  overflow: hidden;
+  transition: background 0.3s, padding 0.3s, height 0.3s;
 }
 
 header h1 {
   font-size: 2.8rem;
   margin: 0;
+  color: #fff8dc;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
   transition: font-size 0.3s;
 }
 
 header.minimal h1 {
-  font-size: 1.1rem;
+  font-size: 1.6rem;
+  line-height: 50px;
+  margin: 0;
+  transition: font-size 0.3s, line-height 0.3s;
 }
 
 header p,
 header #contador-casamento {
-  /* transition: opacity 0.3s; */
-  font-size: 1.1rem !important; /* ajuste conforme desejar */
+  opacity: 1;
+  transition: opacity 0.3s;
 }
 
 header.minimal p,
 header.minimal #contador-casamento {
   opacity: 0;
   pointer-events: none;
-  height: 0;
   overflow: hidden;
 }
 
