@@ -419,16 +419,17 @@ window.addEventListener('scroll', function() {
     const frase = document.getElementById('frase-final');
     if (!header) return;
 
-    if (!headerMinimalAtivo && window.scrollY > 120) {
+    // Dois limites: ativa minimal só acima de 140, desativa só abaixo de 60
+    if (!headerMinimalAtivo && window.scrollY > 140) {
       header.classList.add('minimal');
       if (frase) frase.style.opacity = '0';
       headerMinimalAtivo = true;
-    } else if (headerMinimalAtivo && window.scrollY < 80) {
+    } else if (headerMinimalAtivo && window.scrollY < 60) {
       header.classList.remove('minimal');
       if (frase) frase.style.opacity = '1';
       headerMinimalAtivo = false;
     }
-  }, 80); // só executa 80ms após parar de rolar
+  }, 100); // só executa 100ms após parar de rolar
 });
 
 function abrirCardAmazon() {
