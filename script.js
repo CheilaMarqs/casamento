@@ -418,21 +418,20 @@ window.addEventListener('scroll', function() {
 
   const scrollY = window.scrollY;
 
-  // Use um threshold para evitar tremeluzir no mobile
-  const THRESHOLD = 30;
+  // Dois limites para histerese
+  const LIMITE_ATIVAR = 30; // só ativa minimal acima de 30px
+  const LIMITE_DESATIVAR = 5; // só desativa minimal abaixo de 5px
 
-  // Diminui o header se rolar mais que o threshold
-  if (!headerMinimalAtivo && scrollY > THRESHOLD) {
+  if (!headerMinimalAtivo && scrollY > LIMITE_ATIVAR) {
     header.classList.add('minimal');
     if (frase) frase.style.opacity = '0';
     headerMinimalAtivo = true;
-  }
-  // Só volta ao normal se rolar quase até o topo
-  else if (headerMinimalAtivo && scrollY < 5) {
+  } else if (headerMinimalAtivo && scrollY < LIMITE_DESATIVAR) {
     header.classList.remove('minimal');
     if (frase) frase.style.opacity = '1';
     headerMinimalAtivo = false;
   }
+  // Se scrollY está entre 5 e 30, NÃO faz nada!
 });
 
 function abrirCardAmazon() {
