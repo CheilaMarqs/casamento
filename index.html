@@ -9,6 +9,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pinion+Script&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css">
+  <script src="script.js"></script>
   <title>Casamento Cheila & Luiz</title>
 
 </head>
@@ -16,11 +17,10 @@
 <body>
 <!-- <button onclick="document.getElementById('audio-perfeito').play()">Clique para ouvir a música do casal 💙</button> -->
 
-  <header>
-    <h1> Luiz e Cheila</h1></br>
-    <p>Nosso grande dia: 12/09/2026</p>
-    <!-- <div class="mensagem-final">Faltam: </div> -->
-    <div id="contador-casamento">
+  <header id="main-header">
+  <h1> Luiz e Cheila</h1></br>
+  <p>Nosso grande dia: 12/09/2026</p>
+  <div id="contador-casamento">
   <div class="tempo">
     <span id="dias">455</span>
     <span class="contador-legenda">d</span>
@@ -39,7 +39,9 @@
   </div>
 </div>
 <!-- <div class="mensagem-final">para o nosso SIM!</div> -->
-<div class="mensagem-final">Cada segundo que passa é um passo mais perto do nosso felizes para sempre.</div>
+<div id="frase-final" class="mensagem-final">
+  Cada segundo que passa é um passo mais perto do nosso felizes para sempre.
+</div>
   
 </header>
 
@@ -47,22 +49,25 @@
   <div class="carrossel-com-flores">
     <div class="carrossel">
       <!-- ...código anterior... -->
-<video class="slide ativo" id="slide-video" width="100%" height="400" autoplay controls loop poster="casal01.jpg">
+<video class="slide ativo" id="slide-video" width="100%" height="400" autoplay loop>
   <source src="Video.mp4" type="video/mp4">
 </video>
 <!-- ...código posterior... -->
-      <img src="casal01.jpg" class="slide ativo" alt="Foto do casal 1">
-      <img src="casal02.jpg" class="slide" alt="Foto do casal 2">
+      <!-- <img src="casal01.jpg" class="slide ativo" alt="Foto do casal 1">
+      <img src="casal02.jpg" class="slide" alt="Foto do casal 2"> -->
       <!-- Adicione mais fotos aqui -->
     </div>
   </div>
 </section>
 
-
-
-
 <section>
   <h2>Lista de Presentes</h2>
+<div class="presente">
+  <img src="https://m.media-amazon.com/images/I/71vp5wxidlL._AC_SX569_.jpg" alt="Escorredor de Louça" class="presente-imagem">
+  <p>Escorredor de Louça</p>
+  <button onclick="abrirCardAmazon()">Presentear</button>
+</div>
+
 
 <div class="presente">
   <img src="teste.jpg" alt="Netflix" style="width:100px; border-radius: 8px; margin-bottom: 10px;">
@@ -95,8 +100,8 @@
 <input type="text" id="nome-doador" placeholder="Digite seu nome (opcional)">
 
 
-        <label for="comentario-pix">Comentário (opcional):</label>
-<textarea id="comentario-pix" rows="3" placeholder="Por que escolheu esse presente?"></textarea>
+        <label for="comentario-pix">Deixe um recadinho para os noivos (Opcional):</label>
+<textarea id="comentario-pix" rows="3" placeholder="Deixe um recadinho para os noivos (Opcional)"></textarea>
 <button onclick="confirmarPresente()">Confirmar Presente</button>
 
 
@@ -112,7 +117,7 @@
   <div class="form-presente">
     <input type="text" id="outro-nome" placeholder="Seu nome (opcional)">
     <input type="text" id="outro-presente" placeholder="Nome do presente" required>
-    <textarea id="outro-mensagem" placeholder="Por que escolheu esse presente?" required></textarea>
+    <textarea id="outro-mensagem" placeholder="Deixe um recadinho para os noivos (Opcional)" required></textarea>
     <input type="file" id="outro-foto" accept="image/*">
     <button onclick="presentearOutroPresente()">Presentear via PIX</button>
   </div>
@@ -142,425 +147,48 @@
   Seu navegador não suporta vídeo.
 </video>
 
-<script>
-  let index = 0;
-  const slides = document.querySelectorAll('.carrossel .slide');
-  const videoSlide = document.getElementById('slide-video');
+<div id="card-amazon" class="card-pix" style="display:none;">
+  <div class="conteudo-card">
+    <span class="fechar" onclick="fecharCardAmazon()">×</span>
+    <div class="instrucoes-presente">
+      <h2>Com carinho, escolha um presente 💝</h2>
 
-  function mostrarSlideManual(i) {
-    slides.forEach((slide, idx) => {
-      slide.classList.remove('ativo');
-      if (idx === i) {
-        slide.classList.add('ativo');
-        // Se for vídeo, reinicia e toca
-        if (slide.tagName === "VIDEO") {
-          slide.currentTime = 0;
-          slide.play();
-        } else if (videoSlide) {
-          videoSlide.pause();
-          videoSlide.currentTime = 0;
-        }
-      }
-    });
-    index = i;
-  }
+      <p>
+        Ao clicar no botão abaixo, você será redirecionado para a Amazon para finalizar a compra do presente.
+      </p>
 
-  function mostrarSlide() {
-    // Se o slide atual for vídeo e não terminou, não avança
-    if (slides[index].tagName === "VIDEO") {
-      if (!slides[index].ended && !slides[index].paused) {
-        return;
-      }
-    }
-    slides.forEach((slide, i) => slide.classList.remove('ativo'));
-    index = (index + 1) % slides.length;
-    slides[index].classList.add('ativo');
-    // Se for vídeo, toca
-    if (slides[index].tagName === "VIDEO") {
-      slides[index].currentTime = 0;
-      slides[index].play();
-    } else if (videoSlide) {
-      videoSlide.pause();
-      videoSlide.currentTime = 0;
-    }
-  }
+      <p>
+        O presente será entregue diretamente em nosso endereço:
+      </p>
 
-  // Quando o vídeo terminar, avança para o próximo slide
-  if (videoSlide) {
-    videoSlide.addEventListener('ended', () => {
-      slides[index].classList.remove('ativo');
-      index = (index + 1) % slides.length;
-      slides[index].classList.add('ativo');
-    });
-  }
+      <p style="font-style: italic; color: #444;">
+        Rua das Acerolas, 4542 – Jardim Lorena, Casa Verde, Portão Preto.
+      </p>
 
-  setInterval(mostrarSlide, 3000); // muda a cada 3 segundos (exceto vídeo)
-  window.addEventListener('DOMContentLoaded', () => {
-    mostrarSlideManual(0);
-  });
-</script>
+      <p>
+        Se quiser, marque a opção <strong>“Este pedido é um presente”</strong> na Amazon — assim ele chegará embalado com todo carinho. 💕
+      </p>
 
-<script>
-function abrirPix(nomePresente) {
-  document.getElementById("presente-titulo").innerText = nomePresente;
-  document.getElementById("comentario-pix").value = "";  // limpa o comentário
-  document.getElementById("card-pix").style.display = "flex";
-}
+      <a href="https://www.amazon.com.br/dp/B0B2XLSLJT/?coliid=I26OWZVTA80P9Q&colid=1X0OBUJUHTJBU&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" target="_blank">
+        <button style="margin-top:16px;">Ir para a Amazon</button>
+      </a>
 
-  function fecharPix() {
-    document.getElementById("card-pix").style.display = "none";
-  }
+      <p style="color: #b22222; font-weight: bold; margin-top: 20px;">
+        Depois de comprar, não esqueça de confirmar aqui no site que você nos presenteou! 😊
+      </p>
 
-  function copiarPix() {
-    const chave = document.getElementById("chave-pix").innerText;
-    navigator.clipboard.writeText(chave).then(() => {
-      alert("Chave PIX copiada com sucesso!");
-    }).catch(() => {
-      alert("Erro ao copiar. Copie manualmente.");
-    });
-  }
-</script>
-<script>
-  // Mapeia nome do presente para a imagem do presente fixo
-const imagensPresentesFixos = {
-  "1 mês de Netflix": "teste.jpg",
-  "Kit miojo gourmet": "teste.jpg",
-  "Vale brigadeiro para crises conjugais": "teste.jpg"
-};
+      <div class="comentario-amazon-box">
+  <div class="comentario-titulo">
+    <!-- <span style="font-size:1.3em; color:#d4af37;">💬</span> -->
+    <span>Deixe um recadinho para os noivos (Opcional):</span>
+  </div>
+  <textarea id="comentario-amazon" rows="3" placeholder="Deixe um recadinho para os noivos (Opcional)"></textarea>
+  <button onclick="confirmarPresenteAmazon()" class="btn-confirmar-amazon">Confirmar que presenteei</button>
+</div>
 
-function uploadImgur(base64) {
-  const clientId = "e97188fb3420e97"; // Seu Client-ID do Imgur
-  return fetch("https://api.imgur.com/3/image", {
-    method: "POST",
-    headers: {
-      Authorization: "Client-ID " + clientId,
-      Accept: "application/json"
-    },
-    body: new URLSearchParams({
-      image: base64.split(',')[1],
-      type: "base64"
-    })
-  })
-    .then(response => response.json())
-    .then(data => data.data.link)
-    .catch(() => "teste.jpg"); // fallback se der erro
-}
-
-// function confirmarPresente() {
-//   const nomePresente = document.getElementById("presente-titulo").innerText;
-//   const comentario = document.getElementById("comentario-pix").value;
-//   const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
-
-//   let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
-//   if (!srcImagem) {
-//     srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
-//   }
-
-//   const presenteHTML = `
-//     <div class="presente">
-//       <img src="${srcImagem}" alt="${nomePresente}" style="width:100%; border-radius: 8px; margin-bottom: 10px;">
-//       <p><strong>${nomePresente}</strong></p>
-//       <p>De: <em>${nomeDoador}</em></p>
-//       <p>${comentario || "Sem comentário 😅"}</p>
-//     </div>
-//   `;
-
-//   adicionarPresenteConfirmado(presenteHTML);
-
-//   fecharPix();
-
-//   const imgTemp = document.getElementById("img-temp");
-//   if (imgTemp) imgTemp.remove();
-//   delete document.getElementById("card-pix").dataset.imagemConfirmacao;
-//   currentIndex = listaConfirmados.children.length - 1;
-//   updateSlider();
-// }
-
-// Função para tratar o presente personalizado com upload de imagem
-function presentearOutroPresente() {
-  const nomeDoador = document.getElementById("outro-nome").value || "Anônimo";
-  const presente = document.getElementById("outro-presente").value;
-  const comentario = document.getElementById("outro-mensagem").value || "Sem comentário 😅";
-  const imagemInput = document.getElementById("outro-foto");
-  const imagemArquivo = imagemInput.files[0];
-
-  if (!presente) {
-    alert("Por favor, preencha o nome do presente.");
-    return;
-  }
-
-  if (imagemArquivo) {
-    const reader = new FileReader();
-    reader.onload = function(e) {
-      const srcImagem = e.target.result;
-
-      // Atualiza o card PIX para confirmação
-      document.getElementById("presente-titulo").innerText = presente;
-      document.getElementById("comentario-pix").value = comentario;
-      document.getElementById("nome-doador").value = nomeDoador;
-
-      // Exibe a imagem no card (opcional)
-      // Por exemplo, criar uma imagem temporária no card
-      let imgTemp = document.getElementById("img-temp");
-      if (!imgTemp) {
-        imgTemp = document.createElement("img");
-        imgTemp.id = "img-temp";
-        imgTemp.style.width = "100px";
-        imgTemp.style.borderRadius = "8px";
-        imgTemp.style.marginBottom = "10px";
-        const conteudoCard = document.querySelector(".conteudo-card");
-        conteudoCard.insertBefore(imgTemp, conteudoCard.firstChild);
-      }
-      imgTemp.src = srcImagem;
-
-      document.getElementById("card-pix").style.display = "flex";
-
-      // Guardar a imagem no input para depois exibir na confirmação
-      document.getElementById("card-pix").dataset.imagemConfirmacao = srcImagem;
-    };
-    reader.readAsDataURL(imagemArquivo);
-  } else {
-    // Sem imagem: limpa a imagem temporária do card, se houver
-    const imgTemp = document.getElementById("img-temp");
-    if (imgTemp) imgTemp.remove();
-
-    document.getElementById("presente-titulo").innerText = presente;
-    document.getElementById("comentario-pix").value = comentario;
-    document.getElementById("nome-doador").value = nomeDoador;
-    document.getElementById("card-pix").removeAttribute("data-imagemConfirmacao");
-    document.getElementById("card-pix").style.display = "flex";
-  }
-}
-
-// Ajuste na confirmação para pegar a imagem temporária se for presente personalizado
-function confirmarPresente() {
-  const nomePresente = document.getElementById("presente-titulo").innerText;
-  const comentario = document.getElementById("comentario-pix").value;
-  const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
-  let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
-  if (!srcImagem) {
-    srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
-  }
-
-  // Envia para o Google Forms
-  salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, srcImagem);
-
-  // Adiciona na lista visual
-  const lista = document.getElementById("lista-confirmados");
-  const div = document.createElement("div");
-  div.className = "presente";
-  div.innerHTML = `
-    <img src="${srcImagem}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;" onerror="this.src='teste.jpg'">
-    <p><strong>${nomePresente}</strong></p>
-    <p>De: <em>${nomeDoador}</em></p>
-    <p>${comentario || "Sem comentário 😅"}</p>
-  `;
-  lista.appendChild(div);
-  div.classList.add('adicionado');
-  setTimeout(() => div.classList.remove('adicionado'), 300);
-
-  fecharPix();
-  const imgTemp = document.getElementById("img-temp");
-  if (imgTemp) imgTemp.remove();
-  delete document.getElementById("card-pix").dataset.imagemConfirmacao;
-  currentIndex = document.querySelectorAll('#lista-confirmados .presente').length - 1;
-  updateSlider();
-}
-
-// Substitua a função confirmarPresente por esta versão:
-
-function confirmarPresente() {
-  const nomePresente = document.getElementById("presente-titulo").innerText;
-  const comentario = document.getElementById("comentario-pix").value;
-  const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
-  let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
-  if (!srcImagem) {
-    srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
-  }
-
-  // Se for imagem base64, faz upload para o Imgur
-  if (srcImagem.startsWith("data:image")) {
-    uploadImgur(srcImagem).then(urlImgur => {
-      salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, urlImgur);
-      adicionarPresenteVisual(nomePresente, nomeDoador, comentario, urlImgur);
-    });
-  } else {
-    salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, srcImagem);
-    adicionarPresenteVisual(nomePresente, nomeDoador, comentario, srcImagem);
-  }
-
-  fecharPix();
-  const imgTemp = document.getElementById("img-temp");
-  if (imgTemp) imgTemp.remove();
-  delete document.getElementById("card-pix").dataset.imagemConfirmacao;
-  currentIndex = document.querySelectorAll('#lista-confirmados .presente').length - 1;
-  updateSlider();
-}
-
-// Adicione também esta função para exibir o presente na lista
-function adicionarPresenteVisual(nomePresente, nomeDoador, comentario, imagemUrl) {
-  const lista = document.getElementById("lista-confirmados");
-  const div = document.createElement("div");
-  div.className = "presente";
-  let html = "";
-  if (imagemUrl) {
-   html += `<img src="${imagemUrl}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;">`;
-  }
-  html += `
-    <p><strong>${nomePresente}</strong></p>
-    <p>De: <em>${nomeDoador}</em></p>
-    <p>${comentario || "Sem comentário 😅"}</p>
-  `;
-  div.innerHTML = html;
-  lista.appendChild(div);
-  div.classList.add('adicionado');
-  setTimeout(() => div.classList.remove('adicionado'), 300);
-}
-</script>
-// Ajustes nos scripts para o Google Forms
-<script>
-  // Substitua pelos nomes corretos dos campos conforme seu formulário
-function salvarPresenteGoogleForms(nome, presente, mensagem, imagemUrl = "") {
-  const url = "https://docs.google.com/forms/d/e/1FAIpQLSfCJIMQ1ThR8norkqsdJ-NcKfy_6n3sHn0RSPs03AouadBONA/formResponse";
-  const formData = new FormData();
-  formData.append("entry.899788188", nome);      // Nome
-  formData.append("entry.1283992162", presente); // Presente
-  formData.append("entry.707539019", mensagem);  // Mensagem
-  formData.append("entry.2112860432", imagemUrl); // Imagem (se houver)
-
-  alert("Presente confirmado! (O Google Forms não retorna resposta, mas tentamos enviar)");
-  fetch(url, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  });
-}
-</script>
-<script>
-function carregarPresentesConfirmados() {
-  const urlCSV = "https://docs.google.com/spreadsheets/d/e/2PACX-1vSj-N-lKq4ga601XJjxpwjGKxJEHcOOJI0nMLZi1A_0_bX6-pGNpsn3T6iPGhRBoZCxC_1raQbyCZRq/pub?gid=1229724433&single=true&output=csv";
-  fetch(urlCSV)
-    .then(response => response.text())
-    .then(csv => {
-      // Divide o CSV em linhas, mas ignora linhas vazias
-      const linhas = csv.split('\n').filter(l => l.trim()).slice(1); // pula o cabeçalho
-      linhas.forEach(linha => {
-        // Divide corretamente, mesmo se houver vírgulas dentro de aspas
-        const colunas = [];
-        let atual = '';
-        let dentroAspas = false;
-        for (let i = 0; i < linha.length; i++) {
-          const char = linha[i];
-          if (char === '"' && linha[i + 1] !== '"') {
-            dentroAspas = !dentroAspas;
-          } else if (char === ',' && !dentroAspas) {
-            colunas.push(atual.replace(/(^"|"$)/g, ""));
-            atual = '';
-          } else {
-            atual += char;
-          }
-        }
-        colunas.push(atual.replace(/(^"|"$)/g, "")); // último campo
-
-        if (colunas.length < 5) return;
-        const nome = colunas[1];
-        const presente = colunas[2];
-        const mensagem = colunas[3];
-        let imagemUrl = colunas[4].replace(/[\r\n]/g, "").trim().replace(/^"+|"+$/g, "");
-        if (!imagemUrl) {
-          imagemUrl = "teste.jpg"; // fallback padrão se estiver vazio
-        }
-        // Aceita qualquer link externo (http/https), mesmo sem extensão
-        // Se não for link externo e não for arquivo local de imagem, usa fallback
-        if (
-          imagemUrl &&
-          !/^https?:\/\//.test(imagemUrl) && // não é link externo
-          !/\.(jpg|jpeg|png|gif)$/i.test(imagemUrl) // e não é arquivo local de imagem
-        ) {
-          imagemUrl = "teste.jpg";
-        }
-
-        console.log('Imagem lida do CSV:', imagemUrl);
-
-        if (nome && presente) {
-          adicionarPresenteVisual(presente, nome, mensagem, imagemUrl);
-        }
-      });
-    });
-}
-
-// Chame ao carregar a página
-window.addEventListener('DOMContentLoaded', carregarPresentesConfirmados);
-
-function enviarConfirmacaoPresenca(event) {
-  event.preventDefault();
-  const form = event.target;
-  const nomePessoa = form.nomePessoa.value;
-  const quantidade = form.quantidade.value;
-  const acompanhantes = form.acompanhantes.value;
-
-  const url = "https://docs.google.com/forms/d/e/1FAIpQLSfCJIMQ1ThR8norkqsdJ-NcKfy_6n3sHn0RSPs03AouadBONA/formResponse";
-  const formData = new FormData();
-  formData.append("entry.1292148400", nomePessoa);      // Nome completo (presença)
-  formData.append("entry.362223164", quantidade);      // Quantidade de pessoas (presença) ou presente
-  formData.append("entry.76194983", acompanhantes);    // Nomes dos acompanhantes ou mensagem
-
-  fetch(url, {
-    method: "POST",
-    mode: "no-cors",
-    body: formData
-  });
-
-  alert("Presença confirmada com sucesso!");
-  form.reset();
-}
-
-// CONTADOR REGRESSIVO CASAMENTO
-function atualizarContadorCasamento() {
-  const dataCasamento = new Date("2026-09-12T18:30:00-03:00"); // Horário de Brasília
-  const agora = new Date();
-  const diff = dataCasamento - agora;
-
-  if (diff <= 0) {
-    document.getElementById("contador-casamento").innerHTML = "<span style='color:#d4af37'>É hoje! 💍</span>";
-    return;
-  }
-
-  const dias = Math.floor(diff / (1000 * 60 * 60 * 24));
-  const horas = Math.floor((diff / (1000 * 60 * 60)) % 24);
-  const minutos = Math.floor((diff / (1000 * 60)) % 60);
-  const segundos = Math.floor((diff / 1000) % 60);
-
-  document.getElementById("dias") .textContent = String(dias).padStart(2, '0');
-  document.getElementById("horas").textContent = String(horas).padStart(2, '0');
-  document.getElementById("minutos").textContent = String(minutos).padStart(2, '0');
-  document.getElementById("segundos").textContent = String(segundos).padStart(2, '0');
-}
-
-setInterval(atualizarContadorCasamento, 1000);
-window.addEventListener('DOMContentLoaded', atualizarContadorCasamento);
-</script>
-<script>
-window.addEventListener('DOMContentLoaded', function() {
-  const video = document.getElementById('slide-video');
-  if (video) {
-    video.volume = 1; // volume inicial (máximo)
-    function fadeOutVolume() {
-      let fade = setInterval(function() {
-        if (video.volume > 0.31) { // para em 0.3
-          video.volume -= 0.01;
-        } else {
-          video.volume = 0.3;
-          clearInterval(fade);
-        }
-      }, 100); // diminui a cada 100ms
-    }
-    video.addEventListener('play', function() {
-      setTimeout(fadeOutVolume, 2000); // inicia o fade após 2 segundos
-    });
-  }
-});
-</script>
+    </div>
+  </div>
+</div>
 
 </body>
 </html>
