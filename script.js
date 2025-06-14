@@ -456,7 +456,7 @@ function confirmarPresenteAmazon() {
   document.getElementById("comentario-amazon").value = "";
 }
 
-window.addEventListener('scroll', liberarAudioMusica, { once: true });
+// window.addEventListener('scroll', liberarAudioMusica, { once: true });
 
 function liberarAudioMusica() {
   const video = document.getElementById('slide-video');
