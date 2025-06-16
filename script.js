@@ -60,30 +60,22 @@ function abrirPix(nomePresente, idCard) {
   document.getElementById("presente-titulo").innerText = nomePresente;
   document.getElementById("comentario-pix").value = "";
   document.getElementById("card-pix").style.display = "flex";
-  // Pega o valor do atributo data-valor
   const card = document.getElementById(idCard);
-  valorPixAtual = card ? card.getAttribute('data-valor') : "0.00";
-  mostrarQrCodePix();
-}
+  const valorPix = card ? card.getAttribute('data-valor') : "0.00";
 
-function gerarCodigoPixCopiaCola() {
-  const chave = "92986437318";
-  const valor = valorPixAtual; // valor dinâmico
-  const nome = "CHEILA MARQUES";
-  const cidade = "MANAUS";
-  // Payload simplificado (para produção, use uma lib!)
-  return `00020126360014BR.GOV.BCB.PIX0111932986437318520400005303986540${valor.replace('.', '')}5802BR5913${nome}6006${cidade}62070503***6304`;
-}
+  const payload = gerarPayloadPix({
+    key: "+5592986437318",
+    name: "Cheila Marques Monteiro",
+    city: "SAO PAULO",
+    value: valorPix, // valor do presente, ex: "25.00"
+    txid: "388qrdhrnF"
+  });
 
-function mostrarQrCodePix() {
-  const codigoPix = gerarCodigoPixCopiaCola(); // Gera o código copia e cola correto
-  document.getElementById("codigo-pix").value = codigoPix;
+  document.getElementById("codigo-pix").value = payload;
   const qrDiv = document.getElementById("qrcode-pix");
-  qrDiv.innerHTML = ""; // Limpa antes de gerar novo
-
-  // Gera o QR Code como imagem
+  qrDiv.innerHTML = "";
   new QRCode(qrDiv, {
-    text: codigoPix,
+    text: payload,
     width: 180,
     height: 180,
     colorDark: "#003366",
@@ -92,6 +84,19 @@ function mostrarQrCodePix() {
   });
 }
 
+function gerarCodigoPixCopiaCola(valorPix) {
+  // valorPix deve ser string, exemplo: "39.90"
+  const payload = Pix({
+    key: "+5592986437318",
+    name: "CHEILA MARQUES MONTEIRO",
+    city: "SAO PAULO",
+    value: valorPix,
+    message: "Presente casamento"
+  });
+  return payload;
+}
+
+
     function fecharPix() {
         document.getElementById("card-pix").style.display = "none";
     }
@@ -99,10 +104,37 @@ function mostrarQrCodePix() {
     function copiarCodigoPix() {
   const input = document.getElementById("codigo-pix");
   if (input) {
-    navigator.clipboard.writeText(input.value).then(() => {
-      alert("Código PIX copia e cola copiado!");
-    });
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(input.value)
+        .finally(() => {
+          document.getElementById('modal-pix-alert').style.display = 'flex';
+        });
+    } else {
+      try {
+        input.select();
+        input.setSelectionRange(0, 99999);
+        document.execCommand("copy");
+      } catch (err) {
+        // Ignora erro
+      }
+      document.getElementById('modal-pix-alert').style.display = 'flex';
+    }
   }
+}
+
+function fallbackCopyText(input) {
+  input.select();
+  input.setSelectionRange(0, 99999); // Para mobile
+  try {
+    document.execCommand("copy");
+    document.getElementById('modal-pix-alert').style.display = 'flex';
+  } catch (err) {
+    alert("Não foi possível copiar o código PIX. Copie manualmente.");
+  }
+}
+
+function fecharModalPixAlert() {
+  document.getElementById('modal-pix-alert').style.display = 'none';
 }
 
     // Mapeia nome do presente para a imagem do presente fixo
@@ -594,5 +626,78 @@ document.addEventListener('DOMContentLoaded', function() {
     };
   }
 });
+
+function gerarPayloadPix({key, name, city, value, txid}) {
+  // Remove acentos e limita tamanho
+  function normalizar(str, max) {
+    return str.normalize("NFD").replace(/[\u0300-\u036f]/g, "")
+      .toUpperCase().replace(/[^A-Z0-9 $%*+\-./:]/g, "").slice(0, max);
+  }
+  key = key.trim();
+  name = normalizar(name, 25);
+  city = normalizar(city, 15);
+  value = Number(value).toFixed(2);
+  txid = txid || "casamento";
+
+  // Merchant Account Information (campo 26)
+  const gui = "BR.GOV.BCB.PIX";
+  const campo00 = `00${("00" + gui.length).slice(-2)}${gui}`;
+  const campo01 = `01${("00" + key.length).slice(-2)}${key}`;
+  const campo26 = `26${("00" + (campo00.length + campo01.length)).slice(-2)}${campo00}${campo01}`;
+
+  // Additional Data Field Template (campo 62)
+  const campo0503 = `05${("00" + txid.length).slice(-2)}${txid}`;
+  const campo62 = `62${("00" + campo0503.length).slice(-2)}${campo0503}`;
+
+  // Monta o payload base
+  let payload =
+    "000201" + // Payload Format Indicator
+    campo26 +
+    "52040000" + // Merchant Category Code
+    "5303986" +  // Transaction Currency (986 = BRL)
+    (parseFloat(value) > 0 ? `54${("00" + value.length).slice(-2)}${value}` : "") +
+    "5802BR" + // Country Code
+    "59" + ("00" + name.length).slice(-2) + name + // Merchant Name
+    "60" + ("00" + city.length).slice(-2) + city + // Merchant City
+    campo62 +
+    "6304"; // CRC placeholder
+
+  // Calcula o CRC16
+  function crc16(str) {
+    let crc = 0xFFFF;
+    for (let i = 0; i < str.length; i++) {
+      crc ^= str.charCodeAt(i) << 8;
+      for (let j = 0; j < 8; j++) {
+        if ((crc & 0x8000) !== 0) {
+          crc = (crc << 1) ^ 0x1021;
+        } else {
+          crc = crc << 1;
+        }
+        crc &= 0xFFFF;
+      }
+    }
+    return crc.toString(16).toUpperCase().padStart(4, '0');
+  }
+  payload += crc16(payload);
+  return payload;
+}
+
+function abrirModalPixAlert() {
+  document.getElementById('modal-pix-alert').style.display = 'flex';
+}
+
+function confirmarCopiaPix() {
+  const input = document.getElementById("codigo-pix");
+  if (input) {
+    if (navigator.clipboard && window.isSecureContext) {
+      navigator.clipboard.writeText(input.value);
+    } else {
+      input.select();
+      input.setSelectionRange(0, 99999);
+      document.execCommand("copy");
+    }
+  }
+  document.getElementById('modal-pix-alert').style.display = 'none';
+}
 
 

@@ -10,11 +10,13 @@
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pinion+Script&display=swap" rel="stylesheet">
-  
+ 
+<script src="qrcode.min.js"></script>
+<script src="pix-qrcode.min.js"></script>
+<script src="script.js"></script>
+
   <!-- Estilo e script -->
   <link rel="stylesheet" href="style.css">
-  <script src="script.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
 
   <title>Casamento Cheila & Luiz</title>
 </head>
@@ -114,7 +116,7 @@
         <p style="font-size: 14px; color: #003366; margin-bottom: 4px;">Copia e cola:</p>
         <div style="display: flex; align-items: center; gap: 8px;">
           <input id="codigo-pix" type="text" readonly style="flex:1; padding: 6px; border-radius: 6px; border: 1px solid #ccc; font-size: 13px;">
-          <button onclick="copiarCodigoPix()" style="padding: 6px 10px; border-radius: 6px; background: #d4af37; color: #fff; border: none; cursor: pointer;">Copiar</button>
+          <button onclick="abrirModalPixAlert()" style="padding: 6px 10px; border-radius: 6px; background: #d4af37; color: #fff; border: none; cursor: pointer;">Copiar</button>
         </div>
         <!-- Adicione o campo de nome aqui -->
         <div class="comentario-amazon-box">
@@ -125,7 +127,7 @@
         </div>
         <div class="comentario-amazon-box">
           <div class="comentario-titulo">
-            <span>Deixe um recadinho pgirara os noivos (opcional):</span>
+            <span>Deixe um recadinho para os noivos (opcional):</span>
           </div>
           <textarea id="comentario-pix" rows="3" placeholder="Deixe aqui sua mensagem cheia de amor! 💌"></textarea>
         </div>
@@ -242,6 +244,19 @@
     <div class="botoes-modal-amazon">
       <button id="btn-continuar-amazon" class="btn-amazon">Continuar</button>
     </div>
+  </div>
+</div>
+
+  <!-- Modal de alerta para PIX -->
+  <div id="modal-pix-alert" style="display:none;">
+  <div class="modal-amazon-content">
+    <span class="modal-amazon-close" onclick="document.getElementById('modal-pix-alert').style.display='none'" style="font-family: 'Pinion Script', cursive;">×</span>
+    <h2>Atenção 💛</h2>
+    <p>
+      Após realizar o pagamento do PIX, <strong>volte aqui</strong> e clique em 
+      <strong>“Confirmar que presenteei”</strong> para registrar seu presente na lista dos noivos. 💝
+    </p>
+    <button onclick="confirmarCopiaPix()" class="btn-amazon">Copiar código PIX</button>
   </div>
 </div>
 

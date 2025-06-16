@@ -479,3 +479,24 @@ body h2 {
   min-width: 120px;
 }
 
+#qrcode-pix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px auto;
+}
+
+#modal-pix-alert {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+  font-family: 'Pinion Script', cursive;
+
+}
+#modal-pix-alert[style*="flex"] {
+  display: flex !important;
+}
