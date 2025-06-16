@@ -76,7 +76,8 @@ function gerarCodigoPixCopiaCola() {
 }
 
 function mostrarQrCodePix() {
-  const codigoPix = gerarCodigoPixCopiaCola();
+  // Use seu modelo real aqui:
+  const codigoPix = "00020126580014BR.GOV.BCB.PIX013655667592-3b44-4ac4-b0b5-be476f26c74e52040000530398654045.005802BR5923Cheila Marques Monteiro6009SAO PAULO62140510rnPCbwUZ1P6304B0AC";
   document.getElementById("codigo-pix").value = codigoPix;
   const qrDiv = document.getElementById("qrcode-pix");
   qrDiv.innerHTML = "";
@@ -94,14 +95,14 @@ function mostrarQrCodePix() {
         document.getElementById("card-pix").style.display = "none";
     }
 
-    function copiarPix() {
-        const chave = document.getElementById("chave-pix").innerText;
-        navigator.clipboard.writeText(chave).then(() => {
-        alert("Chave PIX copiada com sucesso!");
-        }).catch(() => {
-        alert("Erro ao copiar. Copie manualmente.");
-        });
-    }
+    function copiarCodigoPix() {
+  const input = document.getElementById("codigo-pix");
+  if (input) {
+    navigator.clipboard.writeText(input.value).then(() => {
+      alert("Código PIX copia e cola copiado!");
+    });
+  }
+}
 
     // Mapeia nome do presente para a imagem do presente fixo
     const imagensPresentesFixos = {
