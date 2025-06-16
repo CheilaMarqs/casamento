@@ -154,6 +154,7 @@ header.minimal + .mensagem-final {
   width: 120px; /* um pouco mais largo que antes */
   border-radius: 10px;
   text-align: center;
+  font-family: 'Pinion Script', cursive;
 }
 
     .form-confirmacao, .form-presente {
@@ -170,7 +171,6 @@ header.minimal + .mensagem-final {
       margin: 8px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
-      font-family: Arial, sans-serif;
     }
 
     button {
