@@ -3,128 +3,151 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <!-- Fontes utilizadas -->
   <link href="https://fonts.googleapis.com/css2?family=Tangerine&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Alex+Brush&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Patrick+Hand&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Pinion+Script&display=swap" rel="stylesheet">
+  
+  <!-- Estilo e script -->
   <link rel="stylesheet" href="style.css">
   <script src="script.js"></script>
+
   <title>Casamento Cheila & Luiz</title>
 </head>
 
 <body>
-<!-- <button onclick="document.getElementById('audio-perfeito').play()">Clique para ouvir a música do casal 💙</button> -->
 
+  <!-- Cabeçalho com contagem regressiva -->
   <header id="main-header">
-  <h1> Luiz e Cheila</h1></br>
-  <p>Nosso grande dia: 12/09/2026</p>
-  <div id="contador-casamento">
-  <div class="tempo">
-    <span id="dias">455</span>
-    <span class="contador-legenda">d</span>
-  </div>
-  <div class="tempo">
-    <span id="horas">16</span>
-    <span class="contador-legenda">h</span>
-  </div>
-  <div class="tempo">
-    <span id="minutos">52</span>
-    <span class="contador-legenda">m</span>
-  </div>
-  <div class="tempo">
-    <span id="segundos">37</span>
-    <span class="contador-legenda">s</span>
-  </div>
-</div>
-<!-- <div class="mensagem-final">para o nosso SIM!</div> -->
-<div id="frase-final" class="mensagem-final">
-  Cada segundo que passa é um passo mais perto do nosso felizes para sempre.
-</div>
-  
-</header>
+    <h1>Luiz e Cheila</h1><br>
+    <p>Nosso grande dia: 12/09/2026</p>
 
-<section class="galeria-decorada">
-  <div class="carrossel-com-flores">
-    <div class="carrossel">
-      <!-- ...código anterior... -->
-<video class="slide ativo" id="slide-video" width="100%" height="400" autoplay loop muted>
-  <source src="Video.mp4" type="video/mp4">
-</video>
-<!-- ...código posterior... -->
-      <!-- <img src="casal01.jpg" class="slide ativo" alt="Foto do casal 1">
-      <img src="casal02.jpg" class="slide" alt="Foto do casal 2"> -->
-      <!-- Adicione mais fotos aqui -->
+    <div id="contador-casamento">
+      <div class="tempo">
+        <span id="dias">455</span>
+        <span class="contador-legenda">d</span>
+      </div>
+      <div class="tempo">
+        <span id="horas">16</span>
+        <span class="contador-legenda">h</span>
+      </div>
+      <div class="tempo">
+        <span id="minutos">52</span>
+        <span class="contador-legenda">m</span>
+      </div>
+      <div class="tempo">
+        <span id="segundos">37</span>
+        <span class="contador-legenda">s</span>
+      </div>
     </div>
-  </div>
-</section>
 
-<section class="presentes-lista">
-  <h2>Lista de Presentes</h2></section><br>
-  
-  <div class="container-presentes">
-  <div class="presente">
-    <img src="https://m.media-amazon.com/images/I/71vp5wxidlL._AC_SX569_.jpg" alt="Escorredor de Louça" class="presente-imagem">
-    <p>Escorredor de Louça</p>
-    <button onclick="abrirCardAmazon()">Presentear</button>
-</div>
+    <!-- Mensagem especial -->
+    <div id="frase-final" class="mensagem-final">
+      Cada segundo que passa é um passo mais perto do nosso felizes para sempre.
+    </div>
+  </header>
 
-
-<div class="presente">
-  <img src="teste.jpg" alt="Netflix" style="width:100px; border-radius: 8px; margin-bottom: 10px;">
-  <p><strong>1 mês de Netflix</strong> — R$ 50</p>
-  <button onclick="abrirPix('1 mês de Netflix')">Presentear via PIX</button>
-</div>
-
-<div class="presente">
-  <img src="teste.jpg" alt="Kit miojo" style="width:100px; border-radius: 8px; margin-bottom: 10px;">
-  <p><strong>Kit miojo gourmet</strong> — R$ 50</p>
-  <button onclick="abrirPix('Kit miojo gourmet')">Presentear via PIX</button>
-</div>
-
-<div class="presente">
-  <img src="teste.jpg" alt="Vale brigadeiro" style="width:100px; border-radius: 8px; margin-bottom: 10px;">
-  <p><strong>Vale brigadeiro para crises conjugais</strong> — R$ 60</p>
-  <button onclick="abrirPix('Vale brigadeiro para crises conjugais')">Presentear via PIX</button>
-</div>
-</div>
-</section>
-<section>      <!-- Card PIX -->
-      <div id="card-pix" class="card-pix">
-  <div class="conteudo-card">
-        <p><span id="presente-titulo"></span></p>
-    <span class="fechar" onclick="fecharPix()">×</span>
-    <h3>Chave PIX:</h3>
-    <p id="chave-pix">92986437318</p>
-    <button onclick="copiarPix()">📋 Copiar PIX</button><br><br>
-    <label for="nome-doador">Seu nome:</label>
-<input type="text" id="nome-doador" placeholder="Digite seu nome (opcional)">
-
-
-        <label for="comentario-pix">Deixe um recadinho para os noivos (Opcional):</label>
-<textarea id="comentario-pix" rows="3" placeholder="Deixe um recadinho para os noivos (Opcional)"></textarea>
-<button onclick="confirmarPresente()">Confirmar Presente</button>
-
-
-  </div>
-</div>
-
-
+  <!-- Seção da galeria com carrossel -->
+  <section class="galeria-decorada">
+    <div class="carrossel-com-flores">
+      <div class="carrossel">
+        <video class="slide ativo" id="slide-video" width="100%" height="400" autoplay loop muted>
+          <source src="Video.mp4" type="video/mp4">
+        </video>
+      </div>
     </div>
   </section>
 
+  <!-- Lista de presentes -->
+  <section class="presentes-lista">
+    <h2>Lista de Presentes</h2><br>
+    
+    <div class="container-presentes">
+      <!-- Presente via Amazon -->
+      <div class="presente" id="presente-amazon_1">
+        <img src="https://m.media-amazon.com/images/I/71vp5wxidlL._AC_SX569_.jpg" alt="Escorredor de Louça" class="presente-imagem">
+        <p>Escorredor de Louça 1</p>
+        <p class="preco-amazon">R$ 89,90</p>
+        <button onclick="abrirCardAmazon('presente-amazon_1')">Presentear</button>
+      </div>
+      <div class="presente" id="presente-amazon_2">
+        <img src="https://m.media-amazon.com/images/I/71vp5wxidlL._AC_SX569_.jpg" alt="Escorredor de Louça" class="presente-imagem">
+        <p>Escorredor de Louça 2</p>
+        <p class="preco-amazon">R$ 89,90</p>
+        <button onclick="abrirCardAmazon('presente-amazon_2')">Presentear</button>
+      </div>
+
+      <div class="presente" id="presente-amazon_3">
+        <img src="https://m.media-amazon.com/images/I/71vp5wxidlL._AC_SX569_.jpg" alt="Escorredor de Louça" class="presente-imagem">
+        <p>Escorredor de Louça 3</p>
+        <p class="preco-amazon">R$ 89,90</p>
+        <button onclick="abrirCardAmazon('presente-amazon_3')">Presentear</button>
+      </div>
+      <!-- Presentes via PIX -->
+      <div class="presente" id="presente-pix_1" data-valor="39.90">
+        <img src="teste.jpg" alt="1 mês de Netflix" class="presente-imagem">
+        <p>1 mês de Netflix</p>
+        <p class="preco-presente">R$ 39,90</p>
+        <button onclick="abrirPix('1 mês de Netflix', 'presente-pix_1')">Presentear</button>
+      </div>
+      <div class="presente" id="presente-pix_2" data-valor="25.00">
+        <img src="teste.jpg" alt="Pano de Chão" class="presente-imagem">
+        <p>Pano de Chão</p>
+        <p class="preco-presente">R$ 25,00</p>
+        <button onclick="abrirPix('Pano de Chão', 'presente-pix_2')">Presentear</button>
+      </div>
+  </section>
+
+  <!-- Card do presente via PIX -->
   <section>
-  <h2>Quer nos dar outro presente?</h2>
-  <div class="form-presente">
-    <input type="text" id="outro-nome" placeholder="Seu nome (opcional)">
-    <input type="text" id="outro-presente" placeholder="Nome do presente" required>
-    <textarea id="outro-mensagem" placeholder="Deixe um recadinho para os noivos (Opcional)" required></textarea>
-    <input type="file" id="outro-foto" accept="image/*">
-    <button onclick="presentearOutroPresente()">Presentear via PIX</button>
-  </div>
-</section>
+    <div id="card-pix" class="card-pix">
+      <div class="conteudo-card">
+        <p><span id="presente-titulo"></span></p>
+        <span class="fechar" onclick="fecharPix()">×</span>
 
+        <h3>PIX para pagamento:</h3>
+        <div id="qrcode-pix" style="margin: 10px auto;"></div>
+        <p style="font-size: 14px; color: #003366; margin-bottom: 4px;">Copia e cola:</p>
+        <div style="display: flex; align-items: center; gap: 8px;">
+          <input id="codigo-pix" type="text" readonly style="flex:1; padding: 6px; border-radius: 6px; border: 1px solid #ccc; font-size: 13px;">
+          <button onclick="copiarCodigoPix()" style="padding: 6px 10px; border-radius: 6px; background: #d4af37; color: #fff; border: none; cursor: pointer;">Copiar</button>
+        </div>
+        <!-- Adicione o campo de nome aqui -->
+        <div class="comentario-amazon-box">
+          <div class="comentario-titulo">
+            <span>Seu nome (opcional):</span>
+          </div>
+          <input type="text" id="nome-doador" placeholder="Digite seu nome (opcional)">
+        </div>
+        <div class="comentario-amazon-box">
+          <div class="comentario-titulo">
+            <span>Deixe um recadinho para os noivos (opcional):</span>
+          </div>
+          <textarea id="comentario-pix" rows="3" placeholder="Deixe aqui sua mensagem cheia de amor! 💌"></textarea>
+        </div>
+        <button onclick="confirmarPresente()" class="btn-confirmar-amazon">
+          Confirmar que presenteei
+        </button>
+      </div>
+    </div>
+  </section>
 
+  <!-- Outro tipo de presente via PIX -->
+  <section>
+    <h2>Quer nos dar outro presente?</h2>
+    <div class="form-presente">
+      <input type="text" id="outro-nome" placeholder="Seu nome (opcional)">
+      <input type="text" id="outro-presente" placeholder="Nome do presente" required>
+      <textarea id="outro-mensagem" placeholder="Deixe um recadinho para os noivos (Opcional)" required></textarea>
+      <input type="file" id="outro-foto" accept="image/*">
+      <button onclick="presentearOutroPresente()">Presentear via PIX</button>
+    </div>
+  </section>
+
+  <!-- Confirmação de presença -->
   <section>
     <h2>Confirmação de Presença</h2>
     <form class="form-confirmacao" onsubmit="enviarConfirmacaoPresenca(event)">
@@ -134,59 +157,89 @@
       <button type="submit">Confirmar Presença</button>
     </form>
   </section>
-<section id="presentes-confirmados">
-  <h2>Presentes Confirmados 💝</h2>
-  <div class="slider-container">
-    <div id="lista-confirmados" class="slider-track"></div>
-  </div>
-  <button id="prev-btn">‹</button>
-  <button id="next-btn">›</button>
-</section>
 
-<video class="slide ativo" id="video-musica" width="0" height="0" autoplay>
-  <source src="Video.mp4" type="video/mp4">
-  Seu navegador não suporta vídeo.
-</video>
+  <!-- Lista de presentes confirmados -->
+  <section id="presentes-confirmados">
+    <h2>Presentes Confirmados 💝</h2>
+    <div class="slider-container">
+      <div id="lista-confirmados" class="slider-track"></div>
+    </div>
+    <button id="prev-btn">‹</button>
+    <button id="next-btn">›</button>
+  </section>
 
-<div id="card-amazon" class="card-pix" style="display:none;">
-  <div class="conteudo-card">
-    <span class="fechar" onclick="fecharCardAmazon()">×</span>
-    <div class="instrucoes-presente">
-      <h2>Com carinho, escolha um presente 💝</h2>
+  <!-- Música do casal (vídeo oculto apenas para áudio) -->
+  <video class="slide ativo" id="video-musica" width="0" height="0" autoplay>
+    <source src="Video.mp4" type="video/mp4">
+    Seu navegador não suporta vídeo.
+  </video>
 
-      <p>
-        Ao clicar no botão abaixo, você será redirecionado para a Amazon para finalizar a compra do presente.
-      </p>
+  <!-- Card Amazon -->
+  <div id="card-amazon" class="card-pix" style="display:none;">
+    <div class="conteudo-card">
+      <span class="fechar" onclick="fecharCardAmazon()">×</span>
+      <div class="instrucoes-presente">
+  <h2>Que alegria saber que você escolheu um presente com tanto carinho! 💝</h2>
 
-      <p>
-        O presente será entregue diretamente em nosso endereço:
-      </p>
+  <p>  
+  Ao clicar em <strong>“Finalizar pedido na Amazon”</strong>, você será redirecionado para concluir a compra e enviar o mimo diretamente para o nosso endereço.
+</p>
+  <p>Quando você finalizar o Pedido o endereço que deve ser marcado é o que esta no nome da Noiva <strong>Cheila Marques</strong></p>
 
-      <p style="font-style: italic; color: #444;">
-        Rua das Acerolas, 4542 – Jardim Lorena, Casa Verde, Portão Preto.
-      </p>
+  <p style="font-style: italic; color: #444;">
+    Rua das Acerolas, 4542 – Jardim Lorena, Casa Verde, Portão Preto.
+  </p>
 
-      <p>
-        Se quiser, marque a opção <strong>“Este pedido é um presente”</strong> na Amazon — assim ele chegará embalado com todo carinho. 💕
-      </p>
+<p>
+  Depois de finalizar, <strong>volte aqui</strong> e clique em <strong>“Já presenteei!”</strong> para nos avisar. Assim, poderemos registrar com gratidão esse gesto especial. 💕
+</p>
 
-      <a href="https://www.amazon.com.br/dp/B0B2XLSLJT/?coliid=I26OWZVTA80P9Q&colid=1X0OBUJUHTJBU&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it" target="_blank">
-        <button style="margin-top:16px;">Ir para a Amazon</button>
-      </a>
+  <p>Dica: marque a opção <strong>“Este pedido é um presente”</strong> na Amazon — assim ele será embalado com todo carinho. 💕</p>
 
-      <p style="color: #b22222; font-weight: bold; margin-top: 20px;">
-        Depois de comprar, não esqueça de confirmar aqui no site que você nos presenteou! 😊
-      </p>
-
-      <div class="comentario-amazon-box">
+  <div class="comentario-amazon-box">
   <div class="comentario-titulo">
-    <!-- <span style="font-size:1.3em; color:#d4af37;">💬</span> -->
-    <span>Deixe um recadinho para os noivos (Opcional):</span>
+    <span>Seu nome (opcional):</span>
   </div>
-  <textarea id="comentario-amazon" rows="3" placeholder="Deixe um recadinho para os noivos (Opcional)"></textarea>
-  <button onclick="confirmarPresenteAmazon()" class="btn-confirmar-amazon">Confirmar que presenteei</button>
+  <input type="text" id="nome-doador-amazon" placeholder="Digite seu nome (opcional)">
+</div>
+<div class="comentario-amazon-box">
+  <div class="comentario-titulo">
+    <span>Deixe um recadinho para os noivos (opcional):</span>
+  </div>
+  <textarea id="comentario-amazon" rows="3" placeholder="Deixe aqui sua mensagem cheia de amor! 💌"></textarea>
 </div>
 
+  <div class="botoes-amazon">
+    <button type="button" onclick="confirmarEIrParaAmazon('https://www.amazon.com.br/dp/B0F9FRQS6Q/?coliid=I1BWLXW27COYMN&colid=2327LVX9PCPD9&psc=1&ref_=list_c_wl_lv_ov_lig_dp_it')">
+      🎁 Finalizar Pedido na Amazon
+    </button>
+    <button onclick="confirmarPresenteAmazon()" class="btn-confirmar-amazon">
+      ✅ Já presenteei!
+    </button>
+  </div>
+</div>
+
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Modal de alerta para Amazon -->
+  <div id="modal-amazon-alert" style="display:none;">
+  <div class="modal-amazon-content">
+    <span class="modal-amazon-close" onclick="fecharModalAmazonAlert()">×</span>
+    <h2 style="color: #0a2758; font-family: 'Dancing Script', cursive;">Antes de seguir 💛</h2>
+    <div style=" font-family: 'Pinion Script', cursive; border-radius: 8px; font-size: 16px; color: #5a4a28; margin-bottom: 18px;">
+      <p>
+        Após finalizar a compra na Amazon, <strong>volte aqui</strong> e clique em 
+        <strong style="color:#0a2758;">“Confirmar que presenteei”</strong> para marcarmos o presente como recebido.
+      </p>
+      <p style="margin-top: 8px;">
+        Clique em <strong style="color:#0a2758;">Continuar</strong> para abrir o site da Amazon e escolher seu presente.
+      </p>
+    </div>
+    <div class="botoes-modal-amazon">
+      <button id="btn-continuar-amazon" class="btn-amazon">Continuar</button>
     </div>
   </div>
 </div>
