@@ -366,7 +366,7 @@ function enviarConfirmacaoPresenca(event) {
 
 // CONTADOR REGRESSIVO CASAMENTO
 function atualizarContadorCasamento() {
-  const dataCasamento = new Date("2026-09-12T18:30:00-03:00"); // Horário de Brasília
+  const dataCasamento = new Date("2026-09-12T18:30:00-04:00"); // Horário de Brasília
   const agora = new Date();
   const diff = dataCasamento - agora;
 
@@ -456,11 +456,24 @@ function confirmarPresenteAmazon() {
   document.getElementById("comentario-amazon").value = "";
 }
 
+function fadeOutVolume(video) {
+  video.volume = 1;
+  let fade = setInterval(function() {
+    if (video.volume > 0.31) {
+      video.volume -= 0.01;
+    } else {
+      video.volume = 0.3;
+      clearInterval(fade);
+    }
+  }, 100);
+}
+
 function liberarAudioMusica() {
   const video = document.getElementById('video-musica');
   if (video) {
     video.muted = false;
     video.play();
+    setTimeout(() => fadeOutVolume(video), 2000); // inicia o fade após 2 segundos
   }
 }
 
@@ -477,7 +490,7 @@ window.addEventListener('DOMContentLoaded', function() {
         if (videoMusica.volume > 0.31) { // para em 0.3
           videoMusica.volume -= 0.01;
         } else {
-          videoMusica.volume = 0.3;
+          videoMusica.volume = 0.2;
           clearInterval(fade);
         }
       }, 100); // diminui a cada 100ms

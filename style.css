@@ -604,5 +604,23 @@ section {
   display: block;
 }
 
+.presentes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 12px;
+}
+
+@media (max-width: 600px) {
+  .presentes-lista {
+    flex-direction: column;
+    align-items: center;
+  }
+  .presentes-lista .presente {
+    width: 95vw;
+    max-width: 320px;
+  }
+}
+
 
 
