@@ -456,8 +456,6 @@ function confirmarPresenteAmazon() {
   document.getElementById("comentario-amazon").value = "";
 }
 
-// window.addEventListener('scroll', liberarAudioMusica, { once: true });
-
 function liberarAudioMusica() {
   const video = document.getElementById('video-musica');
   if (video) {
@@ -468,5 +466,25 @@ function liberarAudioMusica() {
 
 ['touchstart', 'touchend', 'click', 'scroll'].forEach(evt => {
   window.addEventListener(evt, liberarAudioMusica, { once: true });
+});
+
+window.addEventListener('DOMContentLoaded', function() {
+  const videoMusica = document.getElementById('video-musica');
+  if (videoMusica) {
+    videoMusica.volume = 1; // volume inicial (máximo)
+    function fadeOutVolume() {
+      let fade = setInterval(function() {
+        if (videoMusica.volume > 0.31) { // para em 0.3
+          videoMusica.volume -= 0.01;
+        } else {
+          videoMusica.volume = 0.3;
+          clearInterval(fade);
+        }
+      }, 100); // diminui a cada 100ms
+    }
+    videoMusica.addEventListener('play', function() {
+      setTimeout(fadeOutVolume, 2000); // inicia o fade após 2 segundos
+    });
+  }
 });
 
