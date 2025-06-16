@@ -76,15 +76,16 @@ function gerarCodigoPixCopiaCola() {
 }
 
 function mostrarQrCodePix() {
-  // Use seu modelo real aqui:
-  const codigoPix = "00020126580014BR.GOV.BCB.PIX013655667592-3b44-4ac4-b0b5-be476f26c74e52040000530398654045.005802BR5923Cheila Marques Monteiro6009SAO PAULO62140510rnPCbwUZ1P6304B0AC";
+  const codigoPix = gerarCodigoPixCopiaCola(); // Gera o código copia e cola correto
   document.getElementById("codigo-pix").value = codigoPix;
   const qrDiv = document.getElementById("qrcode-pix");
-  qrDiv.innerHTML = "";
+  qrDiv.innerHTML = ""; // Limpa antes de gerar novo
+
+  // Gera o QR Code como imagem
   new QRCode(qrDiv, {
     text: codigoPix,
-    width: 160,
-    height: 160,
+    width: 180,
+    height: 180,
     colorDark: "#003366",
     colorLight: "#fff",
     correctLevel: QRCode.CorrectLevel.H
