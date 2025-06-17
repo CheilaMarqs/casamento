@@ -147,9 +147,9 @@ function fecharModalPixAlert() {
 
     // Mapeia nome do presente para a imagem do presente fixo
     const imagensPresentesFixos = {
-    "1 mês de Netflix": "teste.jpg",
-    "Kit miojo gourmet": "teste.jpg",
-    "Vale brigadeiro para crises conjugais": "teste.jpg"
+    "1 mês de Netflix": "teste.png",
+    "Kit miojo gourmet": "teste.png",
+    "Vale brigadeiro para crises conjugais": "teste.png"
     };
 
     function uploadImgur(base64) {
@@ -167,7 +167,7 @@ function fecharModalPixAlert() {
     })
         .then(response => response.json())
         .then(data => data.data.link)
-        .catch(() => "teste.jpg"); // fallback se der erro
+        .catch(() => "teste.png"); // fallback se der erro
     }
 
     // function confirmarPresente() {
@@ -177,7 +177,7 @@ function fecharModalPixAlert() {
 
     //   let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
     //   if (!srcImagem) {
-    //     srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
+    //     srcImagem = imagensPresentesFixos[nomePresente] || "teste.png";
     //   }
 
     //   const presenteHTML = `
@@ -263,7 +263,7 @@ function fecharModalPixAlert() {
     const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
     let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
     if (!srcImagem) {
-        srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
+        srcImagem = imagensPresentesFixos[nomePresente] || "teste.png";
     }
 
     // Envia para o Google Forms
@@ -274,7 +274,7 @@ function fecharModalPixAlert() {
     const div = document.createElement("div");
     div.className = "presente";
     div.innerHTML = `
-        <img src="${srcImagem}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;" onerror="this.src='teste.jpg'">
+        <img src="${srcImagem}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;" onerror="this.src='teste.png'">
         <p><strong>${nomePresente}</strong></p>
         <p>De: <em>${nomeDoador}</em></p>
         <p>${comentario || "Sem comentário 😅"}</p>
@@ -299,7 +299,7 @@ function fecharModalPixAlert() {
     const nomeDoador = document.getElementById("nome-doador").value || "Anônimo";
     let srcImagem = document.getElementById("card-pix").dataset.imagemConfirmacao;
     if (!srcImagem) {
-        srcImagem = imagensPresentesFixos[nomePresente] || "teste.jpg";
+        srcImagem = imagensPresentesFixos[nomePresente] || "teste.png";
     }
 
     // Se for imagem base64, faz upload para o Imgur
@@ -392,14 +392,14 @@ function fecharModalPixAlert() {
                 const mensagem = colunas[3];
                 let imagemUrl = colunas[4] ? colunas[4].trim() : "";
                 if (!imagemUrl) {
-                    imagemUrl = "teste.jpg";
+                    imagemUrl = "teste.png";
                 }
                 if (
                     imagemUrl &&
                     !/^https?:\/\//.test(imagemUrl) &&
                     !/\.(jpg|jpeg|png|gif)$/i.test(imagemUrl)
                 ) {
-                    imagemUrl = "teste.jpg";
+                    imagemUrl = "teste.png";
                 }
 
                 if (nome && presente) {

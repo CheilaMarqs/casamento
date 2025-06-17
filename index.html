@@ -91,13 +91,13 @@
       </div>
       <!-- Presentes via PIX -->
       <div class="presente" id="presente-pix_1" data-valor="39.90">
-        <img src="teste.jpg" alt="1 mês de Netflix" class="presente-imagem">
+        <img src="teste.png" alt="1 mês de Netflix" class="presente-imagem">
         <p>1 mês de Netflix</p>
         <p class="preco-presente">R$ 39,90</p>
         <button onclick="abrirPix('1 mês de Netflix', 'presente-pix_1')">Presentear</button>
       </div>
       <div class="presente" id="presente-pix_2" data-valor="25.00">
-        <img src="teste.jpg" alt="Pano de Chão" class="presente-imagem">
+        <img src="teste.png" alt="Pano de Chão" class="presente-imagem">
         <p>Pano de Chão</p>
         <p class="preco-presente">R$ 25,00</p>
         <button onclick="abrirPix('Pano de Chão', 'presente-pix_2')">Presentear</button>
@@ -315,10 +315,10 @@ function adicionarPresenteVisual(nomePresente, nomeDoador, comentario, imagemUrl
   const div = document.createElement("div");
   div.className = "presente";
   if (!imagemUrl) {
-    imagemUrl = "teste.jpg"; // fallback padrão se estiver vazio
+    imagemUrl = "teste.png"; // fallback padrão se estiver vazio
   }
-  let url = imagemUrl && imagemUrl.trim() ? imagemUrl.trim() : "teste.jpg";
-  let html = `<img src="${url}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;" onerror="this.src='teste.jpg'">`;
+  let url = imagemUrl && imagemUrl.trim() ? imagemUrl.trim() : "teste.png";
+  let html = `<img src="${url}" alt="${nomePresente}" style="width:100px; border-radius: 8px; margin-bottom: 10px;" onerror="this.src='teste.png'">`;
   html += `
       <p><strong>${nomePresente}</strong></p>
       <p>De: <em>${nomeDoador}</em></p>
