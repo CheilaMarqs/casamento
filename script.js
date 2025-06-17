@@ -60,14 +60,22 @@ function abrirPix(nomePresente, idCard) {
   document.getElementById("presente-titulo").innerText = nomePresente;
   document.getElementById("comentario-pix").value = "";
   document.getElementById("card-pix").style.display = "flex";
-  const card = document.getElementById(idCard);
-  const valorPix = card ? card.getAttribute('data-valor') : "0.00";
+
+  let valorPix = "0.00";
+  // Se for "outro presente", pega do input
+  if (idCard === "outro-presente") {
+    valorPix = document.getElementById("outro-valor").value;
+  } else {
+    // Presente fixo: pega do atributo data-valor
+    const card = document.getElementById(idCard);
+    valorPix = card ? card.getAttribute('data-valor') : "0.00";
+  }
 
   const payload = gerarPayloadPix({
     key: "+5592986437318",
     name: "Cheila Marques Monteiro",
     city: "SAO PAULO",
-    value: valorPix, // valor do presente, ex: "25.00"
+    value: valorPix,
     txid: "388qrdhrnF"
   });
 
@@ -76,8 +84,8 @@ function abrirPix(nomePresente, idCard) {
   qrDiv.innerHTML = "";
   new QRCode(qrDiv, {
     text: payload,
-    width: 180,
-    height: 180,
+    width: 100,
+    height: 100,
     colorDark: "#003366",
     colorLight: "#fff",
     correctLevel: QRCode.CorrectLevel.H
@@ -194,31 +202,28 @@ function fecharModalPixAlert() {
 
     // Função para tratar o presente personalizado com upload de imagem
     function presentearOutroPresente() {
-    const nomeDoador = document.getElementById("outro-nome").value || "Anônimo";
-    const presente = document.getElementById("outro-presente").value;
-    const comentario = document.getElementById("outro-mensagem").value || "Sem comentário 😅";
-    const imagemInput = document.getElementById("outro-foto");
-    const imagemArquivo = imagemInput.files[0];
+      const nomeDoador = document.getElementById("outro-nome").value || "Anônimo";
+      const presente = document.getElementById("outro-presente").value;
+      const comentario = document.getElementById("outro-mensagem").value || "Sem comentário 😅";
+      const imagemInput = document.getElementById("outro-foto");
+      const imagemArquivo = imagemInput.files[0];
 
-    if (!presente) {
+      if (!presente) {
         alert("Por favor, preencha o nome do presente.");
         return;
-    }
+      }
 
-    if (imagemArquivo) {
+      if (imagemArquivo) {
         const reader = new FileReader();
         reader.onload = function(e) {
-        const srcImagem = e.target.result;
+          const srcImagem = e.target.result;
 
-        // Atualiza o card PIX para confirmação
-        document.getElementById("presente-titulo").innerText = presente;
-        document.getElementById("comentario-pix").value = comentario;
-        document.getElementById("nome-doador").value = nomeDoador;
+          document.getElementById("presente-titulo").innerText = presente;
+          document.getElementById("comentario-pix").value = comentario;
+          document.getElementById("nome-doador").value = nomeDoador;
 
-        // Exibe a imagem no card (opcional)
-        // Por exemplo, criar uma imagem temporária no card
-        let imgTemp = document.getElementById("img-temp");
-        if (!imgTemp) {
+          let imgTemp = document.getElementById("img-temp");
+          if (!imgTemp) {
             imgTemp = document.createElement("img");
             imgTemp.id = "img-temp";
             imgTemp.style.width = "100px";
@@ -226,17 +231,17 @@ function fecharModalPixAlert() {
             imgTemp.style.marginBottom = "10px";
             const conteudoCard = document.querySelector(".conteudo-card");
             conteudoCard.insertBefore(imgTemp, conteudoCard.firstChild);
-        }
-        imgTemp.src = srcImagem;
+          }
+          imgTemp.src = srcImagem;
 
-        document.getElementById("card-pix").style.display = "flex";
+          document.getElementById("card-pix").style.display = "flex";
+          document.getElementById("card-pix").dataset.imagemConfirmacao = srcImagem;
 
-        // Guardar a imagem no input para depois exibir na confirmação
-        document.getElementById("card-pix").dataset.imagemConfirmacao = srcImagem;
+          // Gera o código PIX e QR Code para o presente personalizado
+          abrirPix(presente, "outro-presente");
         };
         reader.readAsDataURL(imagemArquivo);
-    } else {
-        // Sem imagem: limpa a imagem temporária do card, se houver
+      } else {
         const imgTemp = document.getElementById("img-temp");
         if (imgTemp) imgTemp.remove();
 
@@ -245,7 +250,10 @@ function fecharModalPixAlert() {
         document.getElementById("nome-doador").value = nomeDoador;
         document.getElementById("card-pix").removeAttribute("data-imagemConfirmacao");
         document.getElementById("card-pix").style.display = "flex";
-    }
+
+        // Gera o código PIX e QR Code para o presente personalizado
+        abrirPix(presente, "outro-presente");
+      }
     }
 
     // Ajuste na confirmação para pegar a imagem temporária se for presente personalizado
@@ -298,11 +306,13 @@ function fecharModalPixAlert() {
     if (srcImagem.startsWith("data:image")) {
         uploadImgur(srcImagem).then(urlImgur => {
         salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, urlImgur);
-        adicionarPresenteVisual(nomePresente, nomeDoador, comentario, urlImgur);
+        adicionarPresenteVisual(nomeDoador, nomePresente, comentario, urlImgur);
+        abrirModalPresenteConfirmado(); // Mostra o modal estilizado
         });
     } else {
         salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, srcImagem);
-        adicionarPresenteVisual(nomePresente, nomeDoador, comentario, srcImagem);
+        adicionarPresenteVisual(nomeDoador, nomePresente, comentario, srcImagem);
+        abrirModalPresenteConfirmado(); // Mostra o modal estilizado
     }
 
     fecharPix();
@@ -343,7 +353,7 @@ function fecharModalPixAlert() {
     formData.append("entry.707539019", mensagem);  // Mensagem
     formData.append("entry.2112860432", imagemUrl); // Imagem (se houver)
 
-    alert("Presente confirmado! (O Google Forms não retorna resposta, mas tentamos enviar)");
+    // alert("Presente confirmado! (O Google Forms não retorna resposta, mas tentamos enviar)");
     fetch(url, {
         method: "POST",
         mode: "no-cors",
@@ -380,9 +390,9 @@ function fecharModalPixAlert() {
                 const nome = colunas[1];
                 const presente = colunas[2];
                 const mensagem = colunas[3];
-                let imagemUrl = colunas[4].replace(/[\r\n]/g, "").trim().replace(/^"+|"+$/g, "");
+                let imagemUrl = colunas[4] ? colunas[4].trim() : "";
                 if (!imagemUrl) {
-                    imagemUrl = "teste.jpg"; // fallback padrão se estiver vazio
+                    imagemUrl = "teste.jpg";
                 }
                 if (
                     imagemUrl &&
@@ -401,9 +411,9 @@ function fecharModalPixAlert() {
             // Remover da lista de opções os presentes já presenteados
             const cards = document.querySelectorAll('.container-presentes .presente');
             cards.forEach(card => {
-                // O nome do presente está no <p> ou <strong>
+                // Só aplica para presentes Amazon
+    if (!card.id.startsWith('presente-amazon_')) return;
                 let nome = card.querySelector('p')?.innerText || '';
-                // Para presentes via PIX, pode estar em <strong>
                 if (!nome && card.querySelector('strong')) {
                     nome = card.querySelector('strong').innerText;
                 }
@@ -426,9 +436,9 @@ function fecharModalPixAlert() {
 
     const url = "https://docs.google.com/forms/d/e/1FAIpQLSfCJIMQ1ThR8norkqsdJ-NcKfy_6n3sHn0RSPs03AouadBONA/formResponse";
     const formData = new FormData();
-    formData.append("entry.1292148400", nomePessoa);      // Nome completo (presença)
-    formData.append("entry.362223164", quantidade);      // Quantidade de pessoas (presença) ou presente
-    formData.append("entry.76194983", acompanhantes);    // Nomes dos acompanhantes ou mensagem
+    formData.append("entry.1292148400", nomePessoa);
+    formData.append("entry.362223164", quantidade);
+    formData.append("entry.76194983", acompanhantes);
 
     fetch(url, {
         method: "POST",
@@ -436,9 +446,9 @@ function fecharModalPixAlert() {
         body: formData
     });
 
-    alert("Presença confirmada com sucesso!");
+    abrirModalPresencaConfirmada(); // Mostra o modal estilizado
     form.reset();
-    }
+}
 
     // CONTADOR REGRESSIVO CASAMENTO
     function atualizarContadorCasamento() {
@@ -539,14 +549,14 @@ function confirmarPresenteAmazon() {
   salvarPresenteGoogleForms(nomeDoador, nomePresente, comentario, srcImagem);
 
   // Adiciona imediatamente na lista visual de confirmados
-  adicionarPresenteVisual(nomePresente, nomeDoador, comentario, srcImagem);
+  adicionarPresenteVisual(nomeDoador, nomePresente, comentario, srcImagem);
 
   fecharCardAmazon();
   document.getElementById("comentario-amazon").value = "";
   document.getElementById("nome-doador-amazon").value = "";
   idPresenteAmazonSelecionado = null;
 
-  alert("Presente confirmado! Ele aparecerá na lista de confirmados em alguns minutos.");
+  abrirModalPresenteConfirmado(); // Mostra o modal estilizado
 }
 
 
@@ -700,4 +710,31 @@ function confirmarCopiaPix() {
   document.getElementById('modal-pix-alert').style.display = 'none';
 }
 
+function abrirModalPresencaConfirmada() {
+  document.getElementById('modal-presenca-confirmada').style.display = 'flex';
+}
 
+function fecharModalPresencaConfirmada() {
+  document.getElementById('modal-presenca-confirmada').style.display = 'none';
+}
+
+function abrirModalPresenteConfirmado() {
+  document.getElementById('modal-presente-confirmado').style.display = 'flex';
+}
+
+function fecharModalPresenteConfirmado() {
+  document.getElementById('modal-presente-confirmado').style.display = 'none';
+}
+
+// ...dentro de presentearOutroPresente, após abrirPix...
+abrirPix(presente, "outro-presente");
+
+// Limpa os campos do formulário de outro presente
+document.getElementById("outro-nome").value = "";
+document.getElementById("outro-presente").value = "";
+document.getElementById("outro-valor").value = "";
+document.getElementById("outro-mensagem").value = "";
+document.getElementById("outro-foto").value = "";
+abrirModalPresenteConfirmado();
+console.log('Imagem recebida:', imagemUrl);
+adicionarPresenteVisual(presente, nome, mensagem, imagemUrl);

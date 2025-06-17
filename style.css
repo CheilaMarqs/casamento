@@ -263,7 +263,8 @@ header.minimal + .mensagem-final {
       padding: 30px;
       border-radius: 15px;
       text-align: center;
-      max-width: 80%;
+      width: 70%;
+      max-width: 400px;
       border: 4px solid #d4af37;
       box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
       position: relative;
@@ -443,12 +444,16 @@ body h2 {
   border: 4px solid #d4af37;
   border-radius: 16px;
   padding: 10px 10px 10px 10px;
-  max-width: 90vw;
-  width: 350px;
+  /* max-width: 90vw; */
+  width: 300px;
+  min-height: 150px;
   text-align: center;
   box-shadow: 0 0 24px #00336655;
   position: relative;
   font-family: 'Dancing Script', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 .modal-amazon-close {
   position: absolute;
@@ -469,7 +474,7 @@ body h2 {
 
 .botoes-amazon {
   display: flex;
-  gap: 12px;
+  /* gap: 12px; */
   justify-content: center;
   margin-top: 12px;
 }
@@ -492,11 +497,86 @@ body h2 {
   z-index: 99999;
   left: 0; top: 0; width: 100vw; height: 100vh;
   background: rgba(0,0,0,0.45);
+  display: flex;
   justify-content: center;
   align-items: center;
-  font-family: 'Pinion Script', cursive;
-
 }
-#modal-pix-alert[style*="flex"] {
+
+#modal-pix-alert .modal-amazon-content {
+  margin: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+  /* Garante centralização vertical e horizontal */
+}
+
+#modal-presenca-confirmada {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+}
+#modal-presenca-confirmada[style*="flex"] {
   display: flex !important;
+}
+#modal-presente-confirmado {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+}
+#modal-presente-confirmado[style*="flex"] {
+  display: flex !important;
+}
+
+#modal-pix-alert h2 {
+  margin-bottom: 15px; /* diminui o espaço abaixo do título */
+}
+#modal-pix-alert p {
+  margin-top: 0; /* remove espaço extra acima do texto */
+}
+.container-centraliza {
+  display: flex;
+  align-items: stretch;
+  height: 36px;
+  width: 100%;
+}
+
+#codigo-pix {
+  flex: 1 1 auto;           /* Input ocupa todo o espaço disponível */
+  height: 78%;
+  font-size: 15px;
+  box-sizing: border-box;
+  margin-right: 10px;
+  border-radius: 6px 0 0 6px;
+  border: 1px solid #ccc;
+}
+
+.btn-amazon {
+  flex: 0 0 auto;           /* Botão só o necessário para o texto */
+  height: 36px;
+  font-size: 15px;
+  box-sizing: border-box;
+  line-height: 1;
+  border-radius: 0 6px 6px 0;
+  border: 1px solid #ccc;
+  border-left: none;
+  padding: 0 16px;
+}
+
+.card-pix h3 {
+  font-size: 1rem !important;
+  margin-bottom: 10px;
+  font-weight: normal !important;
+}
+
+.btn-confirmar-amazon{
+  margin:10px;
 }
