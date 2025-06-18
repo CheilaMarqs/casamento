@@ -411,6 +411,21 @@ header.minimal + .mensagem-final {
   #contador-casamento .tempo .unidade {
     font-size: 0.8rem;
   }
+  .presentes-lista {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .presentes-lista .presente {
+    width: 48vw;
+    min-width: 30%;
+    max-width: 30%;
+    margin: 8px 1vw;
+  }
+  .presente-imagem {
+    border-radius: 18px !important;
+  }
 }
 .presente-imagem {
   width: 100px;
@@ -450,6 +465,9 @@ section > .presente {
     min-width: 30%;
     max-width: 30%;
     margin: 8px 1vw;
+  }
+  .presente-imagem {
+    border-radius: 18px !important;
   }
 }
 
