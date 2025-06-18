@@ -430,9 +430,9 @@ header.minimal + .mensagem-final {
 
 /* Deixe apenas esta regra global para .presente-imagem */
 .presente-imagem {
-  width: 100px;
-  height: 100px;
-  object-fit: contain;
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
   display: block;
   margin: 0 auto 8px auto;
   border-radius: 18px;
