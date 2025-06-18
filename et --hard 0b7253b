@@ -1,0 +1,264 @@
+[33mcommit 72da186240f382e4785a929a580ea0a097fee48c[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m, [m[1;31morigin/main[m[33m)[m
+Merge: 0b7253b 749c6a9
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Tue Jun 17 20:13:00 2025 -0400
+
+    Adicionando arquivos e resolvendo conflitos
+
+[33mcommit 0b7253b17e102430763d2097a26074b97c8c8187[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Tue Jun 17 20:07:49 2025 -0400
+
+    Ajustes Finais
+
+[33mcommit 749c6a9a074ffbf19940cac5c1bf1aef294e6cdf[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Mon Jun 16 20:51:30 2025 -0400
+
+    ajustes pix
+
+[33mcommit 036e0a26522037c31f5987aa2d68324e17357e26[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Mon Jun 16 20:40:58 2025 -0400
+
+    ajustes pix
+
+[33mcommit bf56b2ea0079de78f145c34f82394adc04963155[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Mon Jun 16 18:24:49 2025 -0400
+
+    ajustes pix
+
+[33mcommit 5c1736396ddb172e4d07b8233dbcd3d95663c38a[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Mon Jun 16 15:58:36 2025 -0400
+
+    ajustes pix
+
+[33mcommit f9a15e023acf2faadc60c57a102e28beb84cec33[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Mon Jun 16 15:53:50 2025 -0400
+
+    ajustes nos cards de presente amazon e pix
+
+[33mcommit 5389ff82eb3a05e80d5458112c024062f89f6615[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Mon Jun 16 15:43:36 2025 -0400
+
+    ajustes nos cards de presente amazon e pix
+
+[33mcommit 404c5b6be731c855fccd9aa3b5f34ac87c8bd04a[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sun Jun 15 20:39:07 2025 -0400
+
+    ajuste fonte
+
+[33mcommit cf6dbf28a1fb0818847e86ff525ac02a99a68166[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sun Jun 15 20:32:30 2025 -0400
+
+    ajuste lista de presente
+
+[33mcommit bb58c74862da439c6d9c21c547374b1b3e8f47e7[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sun Jun 15 20:21:02 2025 -0400
+
+    ajuste lista de presente
+
+[33mcommit 8c91bb69db8557401ac5bd997c818e5bacb1afa5[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sun Jun 15 20:15:17 2025 -0400
+
+    ajuste lista de presente
+
+[33mcommit 7cd9fe40cd354850fec3e80e002598df2ebff3cc[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sun Jun 15 20:02:09 2025 -0400
+
+    ajuste musica
+
+[33mcommit d9cd7da2fcabbf219ce4dd20aa420e52eccd9f83[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:34:03 2025 -0400
+
+    ajuste musica
+
+[33mcommit 7e244806292da8eadc41fc646c5fa9d50b945019[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:28:18 2025 -0400
+
+    ajuste musica
+
+[33mcommit 9eb451aea0ec1102e8db8705d52c1f68c76b0176[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:17:59 2025 -0400
+
+    ajuste musica
+
+[33mcommit b511b8dd89b10cc24a26d76d95affd5e122b8dc7[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:15:16 2025 -0400
+
+    ajuste musica
+
+[33mcommit 04416ceb10aa0028c9bb15c46ec9dcb34b873b76[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:13:01 2025 -0400
+
+    ajuste musica
+
+[33mcommit 4bd96c95701dd2c79e9ab4674be083d025c58dee[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:08:27 2025 -0400
+
+    ajuste do slide
+
+[33mcommit 412f963f1d1f8011c89e5a4af74d71d42fde0b3c[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 19:02:55 2025 -0400
+
+    ajuste do slide
+
+[33mcommit 719b4448789e57ac684b47ccbc3262f839831772[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:57:13 2025 -0400
+
+    ajuste do slide
+
+[33mcommit 6fd2fcd7fd94b8bfd54fbf2a35691750a1d017a1[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:53:51 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 28191536456e5eda49a1955a16c8873cb03401a0[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:50:42 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 86e95f9c1e0c0c32c930182bf839e68c915327fd[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:48:01 2025 -0400
+
+    ajuste header celular
+
+[33mcommit ead3042c4466382c5346a9a16ca8515250b143f3[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:43:41 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 37b775142e08723d4eb53e4038afc9a6d8a2d741[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:41:36 2025 -0400
+
+    ajuste header celular
+
+[33mcommit ccf47a4ccf5afb967822d4d9594879ab6ae8c384[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:39:04 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 6fddbefc1eb5d10d4791334b40549e9c67dab858[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:37:26 2025 -0400
+
+    ajuste header celular
+
+[33mcommit a9a4012fb58484a3e16327028af2815a9a711da5[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:31:46 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 4d0d43da6b09c14006cf77c6d9837e7653331f91[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:21:07 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 396d8a437a2af8f7315f888a726965815065de8f[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:16:29 2025 -0400
+
+    ajuste header celular
+
+[33mcommit 1b954069567bbb5790fe08ed3b20d290ac1685c0[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 18:00:34 2025 -0400
+
+    lista de presentes amazon
+
+[33mcommit 89cbfaaf98916ca2109ed5d5911f3db438a17768[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 17:49:40 2025 -0400
+
+    lista de presentes amazon
+
+[33mcommit 407c293a4f54f910336af160a204688238db24ee[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 14:51:40 2025 -0400
+
+    Adição de música 2
+
+[33mcommit 56d2fe79211d2f0d24c77bbbfa88a3da758f61cf[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 14:48:00 2025 -0400
+
+    Adição de música
+
+[33mcommit 89052124f65d26aefaaa24c3397e78e869c7dc53[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Sat Jun 14 01:53:26 2025 -0400
+
+    Ajusta estilos do contador e aumenta fonte da mensagem final
+
+[33mcommit 3c2608352173b8e5c988e3ddd124989d7a6339c6[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 16:34:07 2025 -0400
+
+    Atualizações no site de casamento
+
+[33mcommit 6c5bfaebd4f9580ca76c2a17251a3efe1f3f37fa[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 16:07:46 2025 -0400
+
+    Atualizações no site de casamento
+
+[33mcommit e4e2b05a5e269c39dc2d6b0dd15e5ca72e9bcc3a[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 13:13:26 2025 -0400
+
+    Corrige uso da URL do Apps Script em todas as funções
+
+[33mcommit 1c73aadcf8ef4512c4a36fe8acd4fb08950daae3[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 13:07:08 2025 -0400
+
+    Ajuste no envio para Google Sheets e CORS
+
+[33mcommit 3b2207ed6040d154b703bfd45fce9d3fb534d2d4[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 12:58:30 2025 -0400
+
+    Ajuste no envio para Google Sheets
+
+[33mcommit a2563b9a51d990e8da4d2fb6f14b0908b035f000[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 12:57:05 2025 -0400
+
+    Ajuste no envio para Google Sheets
+
+[33mcommit 7b7fb785d1e1800a49a27d01ed7524fd9df0bba1[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 12:28:50 2025 -0400
+
+    Renomear teste.html para index.html
+
+[33mcommit bf04d4628a9eacf857c7df260a594f86c9d85e0d[m
+Author: CheilaMarqs <cheilammonteiro@gmail.com>
+Date:   Wed Jun 11 12:15:25 2025 -0400
+
+    Primeiro commit - site casamento
