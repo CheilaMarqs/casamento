@@ -1,0 +1,582 @@
+body {
+  font-family: 'Pinion Script', cursive;
+  background-color: #f8f9fa;
+  color: #003366;
+  margin: 0;
+  padding: 0;
+}
+
+    header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background: #003366;
+  background-image: url('fundo.jpg');
+  background-size: cover;
+  background-position: center;
+  color: white;
+  text-align: center;
+  padding: 24px 10px 18px 10px;
+  font-family: 'Dancing Script', cursive;
+  min-height: 50px;
+  transition: background 0.3s, padding 0.3s, height 0.3s;
+  height: auto;
+}
+
+header.minimal {
+  height: 50px !important;
+  padding: 0 10px;
+  overflow: hidden;
+}
+
+header h1 {
+  font-size: 2.8rem;
+  margin: 0;
+  color: #fff8dc;
+  text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+  transition: font-size 0.3s;
+}
+
+header.minimal h1 {
+  font-size: 1.6rem;
+  line-height: 50px;
+  margin: 0;
+  transition: font-size 0.3s, line-height 0.3s;
+}
+
+header p,
+header #contador-casamento {
+  opacity: 1;
+  transition: opacity 0.3s;
+}
+
+header.minimal p,
+header.minimal #contador-casamento,
+header.minimal + .mensagem-final {
+  display: none !important;
+}
+
+    header {
+    font-family: 'Dancing Script', cursive;
+      background-image: url('fundo.jpg');
+      background-size: cover;
+      background-position: center;
+      color: white;
+      text-align: center;
+      padding: 10px 10px;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      transition: background 0.3s;
+    }
+
+    header.minimal {
+      background: rgba(2,12,61,0.95);
+      padding: 8px 10px;
+    }
+
+    header h1 {
+      font-family: 'Dancing Script', cursive;
+      font-size: 70px;
+      margin: 0;
+      color: #fff8dc;
+      text-shadow: 2px 2px 5px rgba(0,0,0,0.6);
+    }
+
+    header.minimal h1 {
+      font-size: 2.2rem;
+      margin: 0;
+    }
+
+    header p {
+      font-family: 'handlee', cursive;
+      font-size: 20px;
+    }
+
+    h1, h2 {
+      /* margin: 10px 0; */
+      text-align: center;
+    }
+
+    section {
+      /* padding: 20px; */
+      text-align: center;
+    }
+
+    .galeria-decorada {
+      display: flex;
+      justify-content: center;
+      padding: 40px 10px 0px 0px;
+      background-color: #eef4ff;
+    }
+
+    .carrossel-com-flores {
+      position: relative;
+      width: 90%;
+      max-width: 600px;
+    }
+
+    .carrossel {
+      width: 100%;
+      height: 400px;
+      overflow: hidden;
+    }
+
+    .carrossel .slide {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 100%;
+      height: 100%;
+      transform: translate(-50%, -50%);
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      border-radius: 20px;
+      border: 3px solid #d4af37;
+      box-shadow: 0 0 15px rgba(212, 175, 55, 0.7);
+    }
+
+    .carrossel .ativo {
+      opacity: 1;
+      z-index: 1;
+    }
+    .container-presentes {
+  display: flex;
+  flex-wrap: wrap; /* quebra para a próxima linha em telas menores */
+  justify-content: center;
+  gap: 5px; /* espaçamento entre os cards */
+  width: 100%;
+  /* border: 1px solid; */
+}
+
+.presente {
+  background: #e0ecff;
+  padding: 10px;
+  width: 140px; /* aumente se quiser mais largo */
+  border-radius: 10px;
+  text-align: center;
+  font-family: 'Pinion Script', cursive;
+  margin: 8px;
+  box-sizing: border-box;
+}
+
+    .form-confirmacao, .form-presente {
+      max-width: 600px;
+      margin: 0 auto;
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 10px;
+    }
+
+    input, textarea {
+      width: 100%;
+      padding: 10px;
+      margin: 8px 0;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+
+    button {
+      padding: 10px 20px;
+      background-color: #001f3f;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    button:hover {
+      background-color: #003366;
+    }
+
+    #presentes-confirmados {
+      padding: 20px;
+/*      background-color: #fffef8;*/
+      text-align: center;
+    }
+
+    #presentes-confirmados .presente {
+      background: #e0ecff;
+      max-width: 100%;
+/*      border: 2px dashed #d4af37;*/
+
+    }
+
+    .slider-container {
+      overflow: hidden;
+      max-width: 100%;
+      margin: 0 auto;
+      border-radius: 10px;
+      /* border: 2px dashed #d4af37; */
+      /* background: #f1f8ff; */
+      padding: 10px;
+    }
+
+    .slider-track {
+      display: flex;
+      transition: transform 0.5s ease;
+      gap: 15px;
+      max-width: 100%;
+    }
+
+    #lista-confirmados {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 16px;
+      padding: 10px;
+      width: 100%;
+    }
+
+    #lista-confirmados .presente {
+      display: flex;
+      align-items: center;
+      background: #e0ecff;
+      border-radius: 10px;
+      width: 100%;
+      max-width: 600px;
+      min-height: 110px;
+      margin: 0 auto;
+      box-sizing: border-box;
+      padding: 12px 18px;
+      box-shadow: 0 2px 8px #00336611;
+    }
+
+    #lista-confirmados .presente-imagem {
+      width: 90px;
+      height: 90px;
+      object-fit: cover;
+      border-radius: 18px;
+      margin-right: 18px;
+      flex-shrink: 0;
+    }
+
+    #lista-confirmados .presente-info {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      justify-content: center;
+      flex: 1;
+      text-align: left;
+      gap: 2px;
+    }
+
+    #lista-confirmados .presente-info p {
+      margin: 2px 0;
+      font-size: 1rem;
+    }
+
+    #prev-btn, #next-btn {
+      background-color: #d4af37;
+      border: none;
+      color: white;
+      font-size: 24px;
+      padding: 5px 15px;
+      cursor: pointer;
+      border-radius: 8px;
+      margin: 10px 5px;
+    }
+
+    #prev-btn:hover, #next-btn:hover {
+      background-color: #b9922f;
+    }
+
+    .card-pix {
+      display: none;
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background-color: rgba(0,0,0,0.6);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .conteudo-card {
+      background-color: white;
+      padding: 30px;
+      border-radius: 15px;
+      text-align: center;
+      width: 70%;
+      max-width: 400px;
+      border: 4px solid #d4af37;
+      box-shadow: 0 0 20px rgba(212, 175, 55, 0.8);
+      position: relative;
+      max-height: 80vh;      /* Limita a altura máxima do card */
+      overflow-y: auto;      /* Adiciona scroll vertical se necessário */
+    }
+
+    .fechar {
+      position: absolute;
+      top: 10px;
+      right: 15px;
+      font-size: 24px;
+      cursor: pointer;
+    }
+
+    .conteudo-card button {
+      margin-top: 10px;
+      background-color: #d4af37;
+      color: #fff;
+      font-weight: bold;
+      border: none;
+      padding: 10px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .conteudo-card button:hover {
+      background-color: #b9922f;
+    }
+
+    .presente {
+  transition: transform 0.3s ease, opacity 0.3s ease;
+}
+.presente.adicionado {
+  transform: scale(1.05);
+  opacity: 0.9;
+}
+
+#contador-casamento {
+  margin: 0px auto 1px auto;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+  background: rgba(255, 255, 255, 0.15);
+  /* border: 2px solid #d4af37; */
+  border-radius: 18px;
+  /* padding: 20px 32px; */
+  font-family: 'Dancing Script', cursive;
+  color: #fff8dc;
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.1);
+  gap: 9px;
+  padding: 10px 12px;
+  width: 50%;
+  /* height: 105px; */
+  max-height: 150px;
+  max-width: 190px;
+}
+
+#contador-casamento .tempo {
+  display: flex;
+  align-items: baseline;
+  gap: 4px;
+  font-weight: bold;
+  font-size: clamp(1rem, 3vw, 1.1rem); /* fonte menor e responsiva */
+  min-width: 25px;
+  margin: 0 2px; /* diminui o espaço lateral entre cada tempo */
+  /* max-width: 13px; */
+  justify-content: flex-end;
+}
+
+#contador-casamento .tempo .unidade {
+  font-size: clamp(rem, 1.5vw, 1.1rem); /* fonte menor e responsiva */
+  font-weight: 600;
+  margin-left: 2px;
+  font-family: 'Dancing Script', cursive;
+}
+
+.mensagem-final {
+  background: rgba(2, 12, 61, 0.8);
+  width: 90%;
+  text-align: center;
+  margin: 12px auto;
+  font-size: clamp(1.5rem, 2vw, 3rem); /* fonte bem maior e responsiva */
+  font-family: 'Dancing Script', cursive;
+  color: hsl(0, 0%, 99%);
+  /* text-shadow: 2px 2px 8px #fff, 0 2px 4px #00336655; */
+  animation: fadeIn 2s ease-in-out;
+  border-radius: 18px;
+}
+@keyframes fadeIn {
+  0% { opacity: 0; transform: translateY(10px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+
+@media (max-width: 600px) {
+  #contador-casamento {
+    padding: 16px 16px;
+    gap: 12px;
+  }
+
+  #contador-casamento .tempo {
+    font-size: 1rem; /* agora menor no mobile */
+  }
+
+  #contador-casamento .tempo .unidade {
+    font-size: 0.8rem;
+  }
+}
+.presente-imagem {
+  width: 100px;
+  height: 100px;
+  object-fit: contain;
+  display: block;
+  margin: 0 auto 8px auto;
+  border-radius: 18px; /* Mais arredondado */
+}
+
+section > .presente {
+  width: 30%;
+  display: inline-block;
+  vertical-align: top;
+  /* margin: 10px 8px; */
+  box-sizing: border-box;
+}
+
+.presentes-lista {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  /* gap: 12px; */
+  /* width: 100%; */
+
+}
+
+@media (max-width: 600px) {
+  .presentes-lista {
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: flex-start;
+  }
+  .presentes-lista .presente {
+    width: 48vw;
+    min-width: 30%;
+    max-width: 30%;
+    margin: 8px 1vw;
+  }
+}
+
+body h2 {
+  font-family: 'Dancing Script', cursive;
+  font-size: 2rem;
+  color: #003366;
+  /* margin: 20px 0; */
+  text-align: center;
+}
+.presente.comprado {
+  display: none;
+}
+
+.comprado {
+  display: none !important;
+}
+
+#modal-amazon-alert {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+}
+.modal-amazon-content {
+  background: #fff;
+  border: 4px solid #d4af37;
+  border-radius: 16px;
+  padding: 10px 10px 10px 10px;
+  /* max-width: 90vw; */
+  width: 300px;
+  min-height: 150px;
+  text-align: center;
+  box-shadow: 0 0 24px #00336655;
+  position: relative;
+  font-family: 'Dancing Script', cursive;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.modal-amazon-close {
+  position: absolute;
+  top: 12px;
+  right: 18px;
+  font-size: 28px;
+  color: #003366;
+  cursor: pointer;
+  font-weight: bold;
+  transition: color 0.2s;
+}
+.modal-amazon-close:hover {
+  color: #d4af37;
+}
+#btn-continuar-amazon:hover {
+  background: #b9922f;
+}
+
+.botoes-amazon {
+  display: flex;
+  /* gap: 12px; */
+  justify-content: center;
+  margin-top: 12px;
+}
+
+.botoes-amazon button {
+  flex: 1 1 0;
+  min-width: 120px;
+}
+
+#qrcode-pix {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 16px auto;
+}
+
+#modal-pix-alert {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+#modal-pix-alert .modal-amazon-content {
+  margin: 0;
+  position: relative;
+  top: 0;
+  left: 0;
+  transform: none;
+  /* Garante centralização vertical e horizontal */
+}
+
+#modal-presenca-confirmada {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+}
+#modal-presenca-confirmada[style*="flex"] {
+  display: flex !important;
+}
+#modal-presente-confirmado {
+  display: none;
+  position: fixed;
+  z-index: 99999;
+  left: 0; top: 0; width: 100vw; height: 100vh;
+  background: rgba(0,0,0,0.45);
+  justify-content: center;
+  align-items: center;
+}
+#modal-presente-confirmado[style*="flex"] {
+  display: flex !important;
+}
+
+#modal-pix-alert h2 {
+  margin-bottom: 15px; /* diminui o espaço abaixo do título */
+}
+#modal-pix-alert p {
+  margin-top: 0; /* remove espaço extra acima do texto */
+}
