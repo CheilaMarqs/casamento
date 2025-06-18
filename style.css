@@ -426,25 +426,17 @@ header.minimal + .mensagem-final {
   .presente-imagem {
     border-radius: 18px !important;
   }
-  .presente-imagem {
-    width: 90vw;
-    max-width: 180px;
-    height: 90vw;
-    max-height: 180px;
-    object-fit: contain;
-    display: block;
-    margin: 0 auto 8px auto;
-    border-radius: 18px !important;
-    background: #fff; /* opcional: fundo branco para imagens PNG */
-  }
 }
+
+/* Deixe apenas esta regra global para .presente-imagem */
 .presente-imagem {
   width: 100px;
   height: 100px;
   object-fit: contain;
   display: block;
   margin: 0 auto 8px auto;
-  border-radius: 18px; /* Mais arredondado */
+  border-radius: 18px;
+  background: #fff; /* opcional, igual ao dos confirmados */
 }
 
 section > .presente {
@@ -476,9 +468,6 @@ section > .presente {
     min-width: 30%;
     max-width: 30%;
     margin: 8px 1vw;
-  }
-  .presente-imagem {
-    border-radius: 18px !important;
   }
 }
 
