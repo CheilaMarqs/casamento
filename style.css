@@ -426,6 +426,17 @@ header.minimal + .mensagem-final {
   .presente-imagem {
     border-radius: 18px !important;
   }
+  .presente-imagem {
+    width: 90vw;
+    max-width: 180px;
+    height: 90vw;
+    max-height: 180px;
+    object-fit: contain;
+    display: block;
+    margin: 0 auto 8px auto;
+    border-radius: 18px !important;
+    background: #fff; /* opcional: fundo branco para imagens PNG */
+  }
 }
 .presente-imagem {
   width: 100px;
